@@ -11,7 +11,7 @@ Mad2x is a mobile client application built using React Native that allows users 
 5. User-friendly interface with smooth animations.
 
 # Disclaimer
-This project is incomplete. Only Android app is ready for preview, IOS App is yet to build.
+This project is under development. Only Android app is ready for preview, IOS App is yet to build.
 
 # Following features are in progress
 1. Appointment Booking
