@@ -40,6 +40,7 @@
             <option value="$PROJECT_DIR$/../node_modules/react-native-gradle-plugin" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-image-crop-picker/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-image-picker/android" />
+            <option value="$PROJECT_DIR$/../node_modules/react-native-onesignal/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-push-notification/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-reanimated/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-safe-area-context/android" />

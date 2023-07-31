@@ -17,32 +17,12 @@ import Animated, { FadeIn, FadeOut, FadeOutDown } from "react-native-reanimated"
 import { connectToDevTools } from "react-devtools-core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import messaging from '@react-native-firebase/messaging';
-import firebase from '@react-native-firebase/app'
-import notifee from '@notifee/react-native';
 
 if (__DEV__) {
   connectToDevTools({
     host: "localhost",
     port: 8097,
   });
-}
-
-const firebaseConfig = {
-  apiKey: "AIzaSyC_33TpuH4rAlvCeBrhLVtDdfhfSxhy4Z8",
-  projectId: "doctor-fcd70",
-  storageBucket: "doctor-fcd70.appspot.com",
-  messagingSenderId: "137368936511",
-  appId: "1:137368936511:android:76795831fc3a25c8a2588a",
-  databaseURL: "https://doctor-fcd70.firebaseio.com",
-}
-
-!firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
-
-async function notify() {
-  await messaging().registerDeviceForRemoteMessages();
-  const token = await messaging().getToken();
-  console.log("token", token)
 }
 
 const App = () => {
@@ -80,60 +60,11 @@ const App = () => {
     )
   }
 
-  const demo_noti = () => {
-    messaging().onMessage(async remoteMessage => {
-      console.log('A new FCM message arrived!', remoteMessage);
-    });
-
-    messaging().onNotificationOpenedApp(remoteMessage => {
-      console.log('onNotificationOpenedApp: ', remoteMessage);
-    });
-
-    messaging().getInitialNotification().then(remoteMessage => {
-      if (remoteMessage) {
-        console.log(
-          'Notification caused app to open from quit state:',
-          remoteMessage,
-        );
-      }
-    });
-
-    messaging().setBackgroundMessageHandler(async remoteMessage => {
-      console.log('Message handled in the background!', remoteMessage);
-    });
-
-    return messaging().onMessage(onMessageReceived);
-  }
-
   useEffect(() => {
-    check_status();
-    notify();
     setTimeout(() => {
       setSplash(false);
     }, 4000);
-    demo_noti();
   }, []);
-
-  async function onMessageReceived(message) {
-    console.log("message: ", message)
-    const channelId = await notifee.createChannel({
-      id: "demo",
-      name: "demo channel"
-    });
-
-    notifee.displayNotification({
-      id: "demo",
-      title: message.notification.title,
-      body: message.notification.body,
-      android: {
-        channelId: channelId,
-        actions: [{
-          title: '<b>Stop</b>',
-          pressAction: { id: "Stop" }
-        }],
-      }
-    });
-  };
 
   const Stack = createNativeStackNavigator();
   const queryClient = new QueryClient();

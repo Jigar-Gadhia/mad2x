@@ -15,34 +15,12 @@ import java.util.ArrayList;
 import io.invertase.notifee.NotifeePackage;
 // @react-native-async-storage/async-storage
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-// @react-native-firebase/app
-import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
-// @react-native-firebase/firestore
-import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
-// @react-native-firebase/messaging
-import io.invertase.firebase.messaging.ReactNativeFirebaseMessagingPackage;
-// @shopify/flash-list
-import com.shopify.reactnative.flash_list.ReactNativeFlashListPackage;
-// appcenter
-import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
-// appcenter-analytics
-import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
-// appcenter-crashes
-import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
-// react-native-document-picker
-import com.reactnativedocumentpicker.RNDocumentPickerPackage;
-// react-native-file-viewer
-import com.vinzscam.reactnativefileviewer.RNFileViewerPackage;
 // react-native-flipper
 import com.facebook.flipper.reactnative.FlipperPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
-// react-native-image-crop-picker
-import com.reactnative.ivpusic.imagepicker.PickerPackage;
 // react-native-image-picker
 import com.imagepicker.ImagePickerPackage;
-// react-native-onesignal
-import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 // react-native-push-notification
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 // react-native-reanimated
@@ -104,20 +82,9 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new NotifeePackage(),
       new AsyncStoragePackage(),
-      new ReactNativeFirebaseAppPackage(),
-      new ReactNativeFirebaseFirestorePackage(),
-      new ReactNativeFirebaseMessagingPackage(),
-      new ReactNativeFlashListPackage(),
-      new AppCenterReactNativePackage(getApplication()),
-      new AppCenterReactNativeAnalyticsPackage(getApplication(), getResources().getString(com.mad2x.R.string.appCenterAnalytics_whenToEnableAnalytics)),
-      new AppCenterReactNativeCrashesPackage(getApplication(), getResources().getString(com.mad2x.R.string.appCenterCrashes_whenToSendCrashes)),
-      new RNDocumentPickerPackage(),
-      new RNFileViewerPackage(),
       new FlipperPackage(),
       new RNGestureHandlerPackage(),
-      new PickerPackage(),
       new ImagePickerPackage(),
-      new ReactNativeOneSignalPackage(),
       new ReactNativePushNotificationPackage(),
       new ReanimatedPackage(),
       new SafeAreaContextPackage(),

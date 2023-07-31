@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, FlatList, ScrollView, useColorScheme } from 'react-native';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
-// import { Colors } from "../assets/colors/colors.js";
 import Icon from 'react-native-vector-icons/Ionicons';
 import CalendarStrip from 'react-native-calendar-strip';
 import { Dropdown } from "react-native-element-dropdown";
 import { fonts } from "../assets/fonts/fonts";
-import DocumentPicker from 'react-native-document-picker';
-import FileViewer from "react-native-file-viewer";
 import { dark } from "../assets/colors/dark.js";
 import { light } from "../assets/colors/light.js";
-import { Colors } from "../assets/colors/colors";
 import { JsonCalendar } from "json-calendar";
-import Animated, { FadeIn, FadeInDown, FadeInUp, FadeOut, FadeOutDown, FadeOutUp } from "react-native-reanimated";
+import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { CommonActions } from "@react-navigation/native";
 
 const Appointment = (navigation) => {
@@ -22,11 +18,8 @@ const Appointment = (navigation) => {
     const [yvalue, setY] = useState("")
     const [isFocus, setIsFocus] = useState(false);
     const [active, setActive] = useState("")
-    const [doc, setDoc] = useState("")
-    const [fname, setFname] = useState("File")
     const [ind, setInd] = useState(0);
     const [select, setSelect] = useState("")
-    const [current, setCurrent] = useState("");
 
     const calendar = new JsonCalendar();
     const week = calendar.dayNames
@@ -171,149 +164,6 @@ const Appointment = (navigation) => {
         { label: '2005', value: '7' },
         { label: '2006', value: '8' }
     ];
-
-    const days = [
-        {
-            id: 0,
-            day: 1
-        },
-        {
-            id: 1,
-            day: 2
-        },
-        {
-            id: 2,
-            day: 3
-        },
-        {
-            id: 3,
-            day: 4
-        },
-        {
-            id: 4,
-            day: 5
-        },
-        {
-            id: 5,
-            day: 6
-        },
-        {
-            id: 6,
-            day: 7
-        },
-        {
-            id: 7,
-            day: 8
-        },
-        {
-            id: 8,
-            day: 9
-        },
-        {
-            id: 9,
-            day: 10
-        },
-        {
-            id: 10,
-            day: 11
-        },
-        {
-            id: 11,
-            day: 12
-        },
-        {
-            id: 12,
-            day: 13
-        },
-        {
-            id: 13,
-            day: 14
-        },
-        {
-            id: 14,
-            day: 15
-        },
-        {
-            id: 15,
-            day: 16
-        },
-        {
-            id: 16,
-            day: 17
-        },
-        {
-            id: 17,
-            day: 18
-        },
-        {
-            id: 18,
-            day: 19
-        },
-        {
-            id: 19,
-            day: 20
-        },
-        {
-            id: 20,
-            day: 21
-        },
-        {
-            id: 21,
-            day: 22
-        },
-        {
-            id: 22,
-            day: 23
-        },
-        {
-            id: 23,
-            day: 24
-        },
-        {
-            id: 24,
-            day: 25
-        },
-        {
-            id: 25,
-            day: 26
-        },
-        {
-            id: 26,
-            day: 27
-        },
-        {
-            id: 27,
-            day: 28
-        },
-        {
-            id: 28,
-            day: 29
-        },
-        {
-            id: 29,
-            day: 30
-        },
-        {
-            id: 30,
-            day: 31
-        },
-    ]
-
-    const seelectDoc = async () => {
-        const document = await DocumentPicker.pick({ type: [DocumentPicker.types.allFiles] });
-        setDoc(document);
-        document.map(async (item, index) => {
-            setDoc(item.uri)
-            setFname(item.name)
-        })
-        console.log(doc)
-    }
-
-    const openFile = async () => {
-        await FileViewer.open(doc);
-        console.log(doc)
-
-    }
 
     const timeSlots = [
         {
@@ -480,47 +330,6 @@ const Appointment = (navigation) => {
                     )
                 }} />
             </Animated.View>}
-            {/* <View style={{ alignItems: "center", marginTop: hp("3%") }}>
-                <FlatList horizontal data={week} renderItem={renderDays} />
-            </View> */}
-            {/* <View style={{ alignItems: "center" }}>
-                <ScrollView 
-                horizontal 
-                pagingEnabled 
-                contentContainerStyle={{ zIndex: -1, marginHorizontal: wp("10%") }}
-                showsHorizontalScrollIndicator={false}>
-                    {days.map((date, index) => { console.log("date", index > 28 && index <= 31 &&  date.day)
-                        return (
-                            <View style={{ alignItems: "center" }}>
-                                <TouchableOpacity onPress={() => setCurrent(index)} style={{
-                                    backgroundColor: current == index ? Colors.blue : null,
-                                    flexDirection: "row",
-                                    marginRight: wp("5.9%"),
-                                    marginLeft: wp("0.4%"),
-                                    marginTop: hp("2%"),
-                                    borderRadius: 8,
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    height: hp("4%"),
-                                    width: wp("6%")
-                                }} key={index}>
-                                    <Text key={date.id} style={{ fontSize: 14, fontFamily: fonts.bold, 
-                                    marginLeft: index >= 7 && index <= 13 ? wp("2%") : index >= 13 && index <= 20 ? wp("30%") : 
-                                    index >= 20 && index <= 29 ? wp("20%") : index >= 30 && index <= 31 ? wp("30%") : null,
-                                    marginRight: index >= 7 && index <= 13 ? wp("-28%"): index >= 13 && index <= 20 ? wp("-29%") :
-                                    index >= 20 && index <= 29 ? wp("-29%") : index >= 30 && index <= 31 ? wp("-19%") : null}}>
-                                    {index < 8 && date.day}
-                                    {index > 7 && index < 16 && date.day}
-                                    {index > 15 && index < 22 && date.day}
-                                    {index > 21 && index < 27 && date.day}
-                                    {index > 27 && index <= 31 && date.day}</Text>
-                                </TouchableOpacity>
-                            </View>
-                        )
-                    })
-                    }
-                </ScrollView>
-            </View> */}
             <CalendarStrip scrollable={true} scrollerPaging={true} showMonth={true} 
                 style={{ height: hp("10%"), width: wp("100%"), paddingTop: 20, paddingBottom: 10, paddingHorizontal: wp("6%"), zIndex: -1 }}
                 // calendarHeaderStyle={{ color: scheme.white }}
@@ -584,13 +393,9 @@ const Appointment = (navigation) => {
 
                         )
                     }} />
-                    <TouchableOpacity style={Styles.appoint_btn} onPress={seelectDoc} >
+                    <TouchableOpacity style={Styles.appoint_btn} >
                         <Text style={Styles.appoint_text}>Book An Appointment</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={Styles.appoint_btn} onPress={openFile} >
-                        <Text style={Styles.appoint_text}>View {fname}</Text>
-                    </TouchableOpacity>
-
                 </View>
             </View>
         </ScrollView>

@@ -2,21 +2,11 @@
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
     <attr name="appBarLayoutStyle"/>
     <attr format="reference" name="badgeStyle"/>
-    <attr format="boolean" name="barrierAllowsGoneWidgets"/>
-    <attr format="enum" name="barrierDirection">
-        <enum name="left" value="0"/>
-        <enum name="right" value="1"/>
-        <enum name="top" value="2"/>
-        <enum name="bottom" value="3"/>
-        <enum name="start" value="5"/>
-        <enum name="end" value="6"/>
-    </attr>
     <attr format="reference" name="bottomAppBarStyle"/>
     <attr format="reference" name="bottomNavigationStyle"/>
     <attr format="reference" name="bottomSheetDialogTheme"/>
     <attr format="reference" name="bottomSheetStyle"/>
     <attr format="reference" name="cardViewStyle"/>
-    <attr format="boolean" name="chainUseRtl"/>
     <attr format="reference" name="checkedIcon"/>
     <attr format="reference" name="chipGroupStyle"/>
     <attr format="reference" name="chipStandaloneStyle"/>
@@ -32,17 +22,10 @@
     <attr format="color" name="colorSecondary"/>
     <attr format="color" name="colorSecondaryVariant"/>
     <attr format="color" name="colorSurface"/>
-    <attr format="reference" name="constraintSet"/>
-    <attr format="string" name="constraint_referenced_ids"/>
-    <attr format="reference" name="content"/>
     <attr format="reference" name="coordinatorLayoutStyle"/>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="color" name="elevationOverlayColor"/>
     <attr format="boolean" name="elevationOverlayEnabled"/>
-    <attr name="emptyVisibility">
-        <enum name="gone" value="0"/>
-        <enum name="invisible" value="1"/>
-    </attr>
     <attr format="boolean" name="ensureMinTouchTargetSize"/>
     <attr name="extendedFloatingActionButtonStyle"/>
     <attr name="floatingActionButtonStyle"/>
@@ -53,114 +36,6 @@
     <attr format="reference" name="itemShapeAppearance"/>
     <attr format="reference" name="itemShapeAppearanceOverlay"/>
     <attr format="color" name="itemTextColor"/>
-    <attr format="boolean" name="layout_constrainedHeight"/>
-    <attr format="boolean" name="layout_constrainedWidth"/>
-    <attr format="integer" name="layout_constraintBaseline_creator"/>
-    <attr format="reference|enum" name="layout_constraintBaseline_toBaselineOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="integer" name="layout_constraintBottom_creator"/>
-    <attr format="reference|enum" name="layout_constraintBottom_toBottomOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="reference|enum" name="layout_constraintBottom_toTopOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="reference" name="layout_constraintCircle"/>
-    <attr format="integer" name="layout_constraintCircleAngle"/>
-    <attr format="dimension" name="layout_constraintCircleRadius"/>
-    <attr format="string" name="layout_constraintDimensionRatio"/>
-    <attr format="reference|enum" name="layout_constraintEnd_toEndOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="reference|enum" name="layout_constraintEnd_toStartOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="dimension" name="layout_constraintGuide_begin"/>
-    <attr format="dimension" name="layout_constraintGuide_end"/>
-    <attr format="float" name="layout_constraintGuide_percent"/>
-    <attr name="layout_constraintHeight_default">
-        <enum name="spread" value="0"/>
-        <enum name="wrap" value="1"/>
-        <enum name="percent" value="2"/>
-    </attr>
-    <attr format="dimension|enum" name="layout_constraintHeight_max">
-        <enum name="wrap" value="-2"/>
-    </attr>
-    <attr format="dimension|enum" name="layout_constraintHeight_min">
-        <enum name="wrap" value="-2"/>
-    </attr>
-    <attr format="float" name="layout_constraintHeight_percent"/>
-    <attr format="float" name="layout_constraintHorizontal_bias"/>
-    <attr format="enum" name="layout_constraintHorizontal_chainStyle">
-        <enum name="spread" value="0"/>
-        <enum name="spread_inside" value="1"/>
-        <enum name="packed" value="2"/>
-    </attr>
-    <attr format="float" name="layout_constraintHorizontal_weight"/>
-    <attr format="integer" name="layout_constraintLeft_creator"/>
-    <attr format="reference|enum" name="layout_constraintLeft_toLeftOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="reference|enum" name="layout_constraintLeft_toRightOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="integer" name="layout_constraintRight_creator"/>
-    <attr format="reference|enum" name="layout_constraintRight_toLeftOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="reference|enum" name="layout_constraintRight_toRightOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="reference|enum" name="layout_constraintStart_toEndOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="reference|enum" name="layout_constraintStart_toStartOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="integer" name="layout_constraintTop_creator"/>
-    <attr format="reference|enum" name="layout_constraintTop_toBottomOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="reference|enum" name="layout_constraintTop_toTopOf">
-        <enum name="parent" value="0"/>
-    </attr>
-    <attr format="float" name="layout_constraintVertical_bias"/>
-    <attr format="enum" name="layout_constraintVertical_chainStyle">
-        <enum name="spread" value="0"/>
-        <enum name="spread_inside" value="1"/>
-        <enum name="packed" value="2"/>
-    </attr>
-    <attr format="float" name="layout_constraintVertical_weight"/>
-    <attr name="layout_constraintWidth_default">
-        <enum name="spread" value="0"/>
-        <enum name="wrap" value="1"/>
-        <enum name="percent" value="2"/>
-    </attr>
-    <attr format="dimension|enum" name="layout_constraintWidth_max">
-        <enum name="wrap" value="-2"/>
-    </attr>
-    <attr format="dimension|enum" name="layout_constraintWidth_min">
-        <enum name="wrap" value="-2"/>
-    </attr>
-    <attr format="float" name="layout_constraintWidth_percent"/>
-    <attr format="dimension" name="layout_editor_absoluteX"/>
-    <attr format="dimension" name="layout_editor_absoluteY"/>
-    <attr format="dimension" name="layout_goneMarginBottom"/>
-    <attr format="dimension" name="layout_goneMarginEnd"/>
-    <attr format="dimension" name="layout_goneMarginLeft"/>
-    <attr format="dimension" name="layout_goneMarginRight"/>
-    <attr format="dimension" name="layout_goneMarginStart"/>
-    <attr format="dimension" name="layout_goneMarginTop"/>
-    <attr name="layout_optimizationLevel">
-        <flag name="none" value="0"/>
-        <flag name="standard" value="7"/> 
-        <flag name="direct" value="1"/>
-        <flag name="barrier" value="2"/>
-        <flag name="chains" value="4"/>
-        <flag name="dimensions" value="8"/>
-        <flag name="groups" value="32"/>
-    </attr>
     <attr format="reference" name="materialButtonOutlinedStyle"/>
     <attr format="reference" name="materialButtonStyle"/>
     <attr format="reference" name="materialButtonToggleGroupStyle"/>
@@ -223,78 +98,26 @@
     <color name="abc_search_url_text_selected">@android:color/black</color>
     <color name="accent_material_dark">@color/material_deep_teal_200</color>
     <color name="accent_material_light">@color/material_deep_teal_500</color>
-    <color name="aliceblue">#F0F8FF</color>
     <color name="androidx_core_ripple_material_light">#1f000000</color>
     <color name="androidx_core_secondary_text_default_material_light">#8a000000</color>
-    <color name="antiquewhite">#FAEBD7</color>
-    <color name="aqua">#00FFFF</color>
-    <color name="aquamarine">#7FFFD4</color>
-    <color name="azure">#F0FFFF</color>
     <color name="background_floating_material_dark">@color/material_grey_800</color>
     <color name="background_floating_material_light">@android:color/white</color>
     <color name="background_material_dark">@color/material_grey_850</color>
     <color name="background_material_light">@color/material_grey_50</color>
-    <color name="beige">#F5F5DC</color>
-    <color name="bisque">#FFE4C4</color>
-    <color name="black">#000000</color>
-    <color name="blanchedalmond">#FFEBCD</color>
-    <color name="blue">#0000FF</color>
-    <color name="blueviolet">#8A2BE2</color>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
     <color name="bright_foreground_inverse_material_dark">@color/bright_foreground_material_light</color>
     <color name="bright_foreground_inverse_material_light">@color/bright_foreground_material_dark</color>
     <color name="bright_foreground_material_dark">@android:color/white</color>
     <color name="bright_foreground_material_light">@android:color/black</color>
-    <color name="brown">#A52A2A</color>
-    <color name="browser_actions_bg_grey">#F5F5F5</color>
-    <color name="browser_actions_divider_color">#1E000000</color>
-    <color name="browser_actions_text_color">#DE000000</color>
-    <color name="browser_actions_title_color">#646464</color>
-    <color name="burlywood">#DEB887</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
-    <color name="cadetblue">#5F9EA0</color>
     <color name="cardview_dark_background">#FF424242</color>
     <color name="cardview_light_background">#FFFFFFFF</color>
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
     <color name="catalyst_logbox_background">#ffffffff</color>
     <color name="catalyst_redbox_background">#eecc0000</color>
-    <color name="chartreuse">#7FFF00</color>
-    <color name="chocolate">#D2691E</color>
-    <color name="common_google_signin_btn_text_dark_default">@android:color/white</color>
-    <color name="common_google_signin_btn_text_dark_disabled">#1F000000</color>
-    <color name="common_google_signin_btn_text_dark_focused">@android:color/black</color>
-    <color name="common_google_signin_btn_text_dark_pressed">@android:color/white</color>
-    <color name="common_google_signin_btn_text_light_default">#90000000</color>
-    <color name="common_google_signin_btn_text_light_disabled">#1F000000</color>
-    <color name="common_google_signin_btn_text_light_focused">#90000000</color>
-    <color name="common_google_signin_btn_text_light_pressed">#DE000000</color>
-    <color name="coral">#FF7F50</color>
-    <color name="cornflowerblue">#6495ED</color>
-    <color name="cornsilk">#FFF8DC</color>
-    <color name="crimson">#DC143C</color>
-    <color name="cyan">#00FFFF</color>
-    <color name="darkblue">#00008B</color>
-    <color name="darkcyan">#008B8B</color>
-    <color name="darkgoldenrod">#B8860B</color>
-    <color name="darkgray">#A9A9A9</color>
-    <color name="darkgreen">#006400</color>
-    <color name="darkkhaki">#BDB76B</color>
-    <color name="darkmagenta">#8B008B</color>
-    <color name="darkolivegreen">#556B2F</color>
-    <color name="darkorange">#FF8C00</color>
-    <color name="darkorchid">#9932CC</color>
-    <color name="darkred">#8B0000</color>
-    <color name="darksalmon">#E9967A</color>
-    <color name="darkseagreen">#8FBC8F</color>
-    <color name="darkslateblue">#483D8B</color>
-    <color name="darkslategray">#2F4F4F</color>
-    <color name="darkturquoise">#00CED1</color>
-    <color name="darkviolet">#9400D3</color>
-    <color name="deeppink">#FF1493</color>
-    <color name="deepskyblue">#00BFFF</color>
     <color name="design_bottom_navigation_shadow_color">#14000000</color>
     <color name="design_dark_default_color_background">#121212</color>
     <color name="design_dark_default_color_error">#CF6679</color>
@@ -334,53 +157,12 @@
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
     <color name="dim_foreground_material_light">#ff323232</color>
-    <color name="dimgray">#696969</color>
-    <color name="dodgerblue">#1E90FF</color>
     <color name="error_color_material_dark">#ff7043</color>
     <color name="error_color_material_light">#ff5722</color>
-    <color name="firebrick">#B22222</color>
-    <color name="floralwhite">#FFFAF0</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
-    <color name="forestgreen">#228B22</color>
-    <color name="fuchsia">#FF00FF</color>
-    <color name="gainsboro">#DCDCDC</color>
-    <color name="ghostwhite">#F8F8FF</color>
-    <color name="gold">#FFD700</color>
-    <color name="goldenrod">#DAA520</color>
-    <color name="gray">#808080</color>
-    <color name="green">#008000</color>
-    <color name="greenyellow">#ADFF2F</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
-    <color name="honeydew">#F0FFF0</color>
-    <color name="hotpink">#FF69B4</color>
-    <color name="indianred">#CD5C5C</color>
-    <color name="indigo">#4B0082</color>
-    <color name="ivory">#FFFFF0</color>
-    <color name="khaki">#F0E68C</color>
-    <color name="lavender">#E6E6FA</color>
-    <color name="lavenderblush">#FFF0F5</color>
-    <color name="lawngreen">#7CFC00</color>
-    <color name="lemonchiffon">#FFFACD</color>
-    <color name="lightblue">#ADD8E6</color>
-    <color name="lightcoral">#F08080</color>
-    <color name="lightcyan">#E0FFFF</color>
-    <color name="lightgoldenrodyellow">#FAFAD2</color>
-    <color name="lightgreen">#90EE90</color>
-    <color name="lightgrey">#D3D3D3</color>
-    <color name="lightpink">#FFB6C1</color>
-    <color name="lightsalmon">#FFA07A</color>
-    <color name="lightseagreen">#20B2AA</color>
-    <color name="lightskyblue">#87CEFA</color>
-    <color name="lightslategray">#778899</color>
-    <color name="lightsteelblue">#B0C4DE</color>
-    <color name="lightyellow">#FFFFE0</color>
-    <color name="lime">#00FF00</color>
-    <color name="limegreen">#32CD32</color>
-    <color name="linen">#FAF0E6</color>
-    <color name="magenta">#FF00FF</color>
-    <color name="maroon">#800000</color>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
     <color name="material_blue_grey_950">#ff21272b</color>
@@ -393,19 +175,6 @@
     <color name="material_grey_800">#ff424242</color>
     <color name="material_grey_850">#ff303030</color>
     <color name="material_grey_900">#ff212121</color>
-    <color name="mediumaquamarine">#66CDAA</color>
-    <color name="mediumblue">#0000CD</color>
-    <color name="mediumorchid">#BA55D3</color>
-    <color name="mediumpurple">#9370DB</color>
-    <color name="mediumseagreen">#3CB371</color>
-    <color name="mediumslateblue">#7B68EE</color>
-    <color name="mediumspringgreen">#00FA9A</color>
-    <color name="mediumturquoise">#48D1CC</color>
-    <color name="mediumvioletred">#C71585</color>
-    <color name="midnightblue">#191970</color>
-    <color name="mintcream">#F5FFFA</color>
-    <color name="mistyrose">#FFE4E1</color>
-    <color name="moccasin">#FFE4B5</color>
     <color name="mtrl_btn_text_color_disabled">#61000000</color>
     <color name="mtrl_btn_transparent_bg_color">#00ffffff</color>
     <color name="mtrl_scrim_color">#52000000</color>
@@ -414,27 +183,8 @@
     <color name="mtrl_textinput_filled_box_default_background_color">#0A000000</color>
     <color name="mtrl_textinput_focused_box_stroke_color">#00000000</color>
     <color name="mtrl_textinput_hovered_box_stroke_color">#DE000000</color>
-    <color name="navajowhite">#FFDEAD</color>
-    <color name="navy">#000080</color>
     <color name="notification_action_color_filter">#ffffffff</color>
     <color name="notification_icon_bg_color">#ff9e9e9e</color>
-    <color name="notification_material_background_media_default_color">#ff424242</color>
-    <color name="oldlace">#FDF5E6</color>
-    <color name="olive">#808000</color>
-    <color name="olivedrab">#6B8E23</color>
-    <color name="orange">#FFA500</color>
-    <color name="orangered">#FF4500</color>
-    <color name="orchid">#DA70D6</color>
-    <color name="palegoldenrod">#EEE8AA</color>
-    <color name="palegreen">#98FB98</color>
-    <color name="paleturquoise">#AFEEEE</color>
-    <color name="palevioletred">#DB7093</color>
-    <color name="papayawhip">#FFEFD5</color>
-    <color name="peachpuff">#FFDAB9</color>
-    <color name="peru">#CD853F</color>
-    <color name="pink">#FFC0CB</color>
-    <color name="plum">#DDA0DD</color>
-    <color name="powderblue">#B0E0E6</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
     <color name="primary_material_dark">@color/material_grey_900</color>
@@ -443,70 +193,19 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
-    <color name="purple">#800080</color>
-    <color name="red">#FF0000</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
-    <color name="rosybrown">#BC8F8F</color>
-    <color name="royalblue">#4169E1</color>
-    <color name="saddlebrown">#8B4513</color>
-    <color name="salmon">#FA8072</color>
-    <color name="sandybrown">#F4A460</color>
-    <color name="seagreen">#2E8B57</color>
-    <color name="seashell">#FFF5EE</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
-    <color name="sienna">#A0522D</color>
-    <color name="silver">#C0C0C0</color>
-    <color name="skyblue">#87CEEB</color>
-    <color name="slateblue">#6A5ACD</color>
-    <color name="slategray">#708090</color>
-    <color name="snow">#FFFAFA</color>
-    <color name="springgreen">#00FF7F</color>
-    <color name="steelblue">#4682B4</color>
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
-    <color name="tan">#D2B48C</color>
-    <color name="teal">#008080</color>
-    <color name="thistle">#D8BFD8</color>
-    <color name="tomato">#FF6347</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
-    <color name="turquoise">#40E0D0</color>
-    <color name="ucrop_color_active_aspect_ratio">@color/ucrop_color_blaze_orange</color>
-    <color name="ucrop_color_active_controls_color">@color/ucrop_color_blaze_orange</color>
-    <color name="ucrop_color_black">#000</color>
-    <color name="ucrop_color_blaze_orange">#FF6300</color>
-    <color name="ucrop_color_crop_background">@color/ucrop_color_black</color>
-    <color name="ucrop_color_default_crop_frame">#ffffff</color>
-    <color name="ucrop_color_default_crop_grid">#80ffffff</color>
-    <color name="ucrop_color_default_dimmed">#8c000000</color>
-    <color name="ucrop_color_default_logo">#4f212121</color>
-    <color name="ucrop_color_ebony_clay">#20242F</color>
-    <color name="ucrop_color_heather">#B3BECE</color>
-    <color name="ucrop_color_inactive_aspect_ratio">@color/ucrop_color_ebony_clay</color>
-    <color name="ucrop_color_inactive_controls_color">@color/ucrop_color_heather</color>
-    <color name="ucrop_color_progress_wheel_line">@color/ucrop_color_ebony_clay</color>
-    <color name="ucrop_color_statusbar">#f5f5f5</color>
-    <color name="ucrop_color_toolbar">@color/ucrop_color_white</color>
-    <color name="ucrop_color_toolbar_widget">@color/ucrop_color_black</color>
-    <color name="ucrop_color_white">#FFF</color>
-    <color name="ucrop_color_widget">@color/ucrop_color_black</color>
-    <color name="ucrop_color_widget_active">@color/ucrop_color_white</color>
-    <color name="ucrop_color_widget_background">@color/ucrop_color_ebony_clay</color>
-    <color name="ucrop_color_widget_rotate_angle">@color/ucrop_color_ebony_clay</color>
-    <color name="ucrop_color_widget_rotate_mid_line">@color/ucrop_color_blaze_orange</color>
-    <color name="ucrop_color_widget_text">@color/ucrop_color_blaze_orange</color>
-    <color name="violet">#EE82EE</color>
-    <color name="wheat">#F5DEB3</color>
     <color name="white">#FFF</color>
-    <color name="whitesmoke">#F5F5F5</color>
-    <color name="yellow">#FFFF00</color>
-    <color name="yellowgreen">#9ACD32</color>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_content_inset_with_nav">72dp</dimen>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
@@ -591,10 +290,6 @@
     <dimen name="action_bar_size">16dp</dimen>
     <dimen name="appcompat_dialog_background_inset">16dp</dimen>
     <dimen name="autofill_inline_suggestion_icon_size">20dp</dimen>
-    <item format="float" name="bannerContentWeight" type="dimen">1.0</item>
-    <item format="float" name="bannerWeightSum" type="dimen">1.0</item>
-    <dimen name="browser_actions_context_menu_max_width">500dp</dimen>
-    <dimen name="browser_actions_context_menu_min_padding">20dp</dimen>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
     <dimen name="cardview_default_radius">2dp</dimen>
@@ -652,8 +347,6 @@
     <dimen name="design_tab_text_size">14sp</dimen>
     <dimen name="design_tab_text_size_2line">12sp</dimen>
     <dimen name="design_textinput_caption_translate_y">5dp</dimen>
-    <item format="float" name="dialogHeightPct" type="dimen">0.80</item>
-    <item format="float" name="dialogWidthPct" type="dimen">0.85</item>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
     <dimen name="fastscroll_default_thickness">8dp</dimen>
@@ -674,8 +367,6 @@
     <item format="float" name="material_emphasis_medium" type="dimen">0.6</item>
     <dimen name="material_text_view_test_line_height">200px</dimen>
     <dimen name="material_text_view_test_line_height_override">100px</dimen>
-    <dimen name="minImageHeight">50dp</dimen>
-    <dimen name="minImageWidth">50dp</dimen>
     <dimen name="mtrl_alert_dialog_background_inset_bottom">80dp</dimen>
     <dimen name="mtrl_alert_dialog_background_inset_end">24dp</dimen>
     <dimen name="mtrl_alert_dialog_background_inset_start">24dp</dimen>
@@ -836,11 +527,6 @@
     <dimen name="notification_subtext_size">13sp</dimen>
     <dimen name="notification_top_pad">10dp</dimen>
     <dimen name="notification_top_pad_large_text">5dp</dimen>
-    <dimen name="paddingSmall">16dp</dimen>
-    <dimen name="subtitle_corner_radius">2dp</dimen>
-    <dimen name="subtitle_outline_width">2dp</dimen>
-    <dimen name="subtitle_shadow_offset">2dp</dimen>
-    <dimen name="subtitle_shadow_radius">2dp</dimen>
     <dimen name="test_mtrl_calendar_day_cornerSize">52dp</dimen>
     <dimen name="tooltip_corner_radius">2dp</dimen>
     <dimen name="tooltip_horizontal_padding">16dp</dimen>
@@ -850,28 +536,6 @@
     <dimen name="tooltip_vertical_padding">6.5dp</dimen>
     <dimen name="tooltip_y_offset_non_touch">0dp</dimen>
     <dimen name="tooltip_y_offset_touch">16dp</dimen>
-    <dimen name="ucrop_default_crop_frame_stoke_width">1dp</dimen>
-    <dimen name="ucrop_default_crop_grid_stoke_width">1dp</dimen>
-    <dimen name="ucrop_default_crop_logo_size">200dp</dimen>
-    <dimen name="ucrop_default_crop_rect_corner_touch_area_line_length">10dp</dimen>
-    <dimen name="ucrop_default_crop_rect_corner_touch_threshold">30dp</dimen>
-    <dimen name="ucrop_default_crop_rect_min_size">100dp</dimen>
-    <dimen name="ucrop_height_crop_aspect_ratio_text">40dp</dimen>
-    <dimen name="ucrop_height_divider_shadow">3dp</dimen>
-    <dimen name="ucrop_height_horizontal_wheel_progress_line">20dp</dimen>
-    <dimen name="ucrop_height_wrapper_controls">64dp</dimen>
-    <dimen name="ucrop_height_wrapper_states">72dp</dimen>
-    <dimen name="ucrop_margin_horizontal_wheel_progress_line">10dp</dimen>
-    <dimen name="ucrop_margin_top_controls_text">4dp</dimen>
-    <dimen name="ucrop_margin_top_widget_text">10dp</dimen>
-    <dimen name="ucrop_padding_crop_frame">16dp</dimen>
-    <dimen name="ucrop_progress_size">30dp</dimen>
-    <dimen name="ucrop_size_dot_scale_text_view">8dp</dimen>
-    <dimen name="ucrop_size_wrapper_rotate_button">50dp</dimen>
-    <dimen name="ucrop_text_size_controls_text">11sp</dimen>
-    <dimen name="ucrop_text_size_widget_text">13sp</dimen>
-    <dimen name="ucrop_width_horizontal_wheel_progress_line">2dp</dimen>
-    <dimen name="ucrop_width_middle_wheel_progress_line">4dp</dimen>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
     <drawable name="notification_template_icon_low_bg">#0cffffff</drawable>
     <item name="accessibility_action_clickable_span" type="id"/>
@@ -925,7 +589,6 @@
     <item name="fragment_container_view_tag" type="id"/>
     <item name="ghost_view" type="id"/>
     <item name="ghost_view_holder" type="id"/>
-    <item name="glide_custom_view_target_tag" type="id"/>
     <item name="home" type="id"/>
     <item name="item_touch_helper_previous_elevation" type="id"/>
     <item name="labelled_by" type="id"/>
@@ -1001,7 +664,6 @@
     <integer name="react_native_inspector_proxy_port">8081</integer>
     <integer name="show_password_duration">200</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
-    <integer name="ucrop_progress_loading_anim_time">1500</integer>
     <item name="launch_screen" type="layout">
         @layout/launch_screen
     </item>
@@ -1043,7 +705,6 @@
     <string name="app_name">mad2x</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
-    <string name="card_content_descriptor">card</string>
     <string name="catalyst_change_bundle_location" project="catalyst" translatable="false">Change Bundle Location</string>
     <string name="catalyst_copy_button" project="catalyst" translatable="false">Copy\n</string>
     <string name="catalyst_debug" project="catalyst" translatable="false">Debug</string>
@@ -1080,50 +741,21 @@
     <string name="chip_text">Chip text</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
     <string name="combobox_description" translatable="false">Combo Box</string>
-    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string>
-    <string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t work unless you enable Google Play services.</string>
-    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Enable Google Play services</string>
-    <string msgid="7153882981874058840" name="common_google_play_services_install_button">Install</string>
-    <string name="common_google_play_services_install_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are missing from your device.</string>
-    <string msgid="7215213145546190223" name="common_google_play_services_install_title">Get Google Play services</string>
-    <string name="common_google_play_services_notification_channel_name">Google Play services availability</string>
-    <string name="common_google_play_services_notification_ticker">Google Play services error</string>
     <string name="common_google_play_services_unknown_issue"><ns1:g id="app_name">%1$s</ns1:g> is having trouble with Google Play services. Please try again.</string>
-    <string name="common_google_play_services_unsupported_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are not supported by your device.</string>
-    <string msgid="6556509956452265614" name="common_google_play_services_update_button">Update</string>
-    <string msgid="9053896323427875356" name="common_google_play_services_update_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run unless you update Google Play services.</string>
-    <string msgid="6006316683626838685" name="common_google_play_services_update_title">Update Google Play services</string>
-    <string name="common_google_play_services_updating_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are currently updating.</string>
-    <string name="common_google_play_services_wear_update_text">New version of Google Play services needed. It will update itself shortly.</string>
-    <string name="common_open_on_phone">Open on phone</string>
-    <string name="common_signin_button_text">Sign in</string>
-    <string name="common_signin_button_text_long">Sign in with Google</string>
-    <string name="default_web_client_id" translatable="false">137368936511-8n8ohq73iafspru8ejg482ng1cb12cuu.apps.googleusercontent.com</string>
     <string name="error_icon_content_description">Error</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
     <string name="fcm_fallback_notification_channel_label">Miscellaneous</string>
-    <string name="gcm_defaultSenderId" translatable="false">137368936511</string>
-    <string name="google_api_key" translatable="false">AIzaSyC_33TpuH4rAlvCeBrhLVtDdfhfSxhy4Z8</string>
-    <string name="google_app_id" translatable="false">1:137368936511:android:76795831fc3a25c8a2588a</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC_33TpuH4rAlvCeBrhLVtDdfhfSxhy4Z8</string>
-    <string name="google_storage_bucket" translatable="false">doctor-fcd70.appspot.com</string>
     <string name="header_description" translatable="false">Heading</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
     <string name="image_description" translatable="false">Image</string>
     <string name="imagebutton_description" translatable="false">Button, Image</string>
     <string name="link_description" translatable="false">Link</string>
-    <string name="location_permission_missing_message">Looks like this app doesn\'t have location services configured. Please see OneSignal docs for more information.</string>
-    <string name="location_permission_missing_title">App Missing Permission</string>
-    <string name="location_permission_name_for_title">Location</string>
-    <string name="location_permission_settings_message">sharing your device location</string>
     <string name="menu_description" translatable="false">Menu</string>
     <string name="menubar_description" translatable="false">Menu Bar</string>
     <string name="menuitem_description" translatable="false">Menu Item</string>
-    <string name="modal_content_descriptor">modal</string>
-    <string name="modal_inner_content_descriptor">modal inner</string>
     <string description="Content description for new notification (no number count) [CHAR_LIMIT=NONE]" name="mtrl_badge_numberless_content_description">New notification</string>
     <string description="Content description for a close icon that lets the user remove content from the screen" name="mtrl_chip_close_icon_content_description">Remove %1$s</string>
     <string name="mtrl_exceed_max_badge_number_suffix" translatable="false"><ns1:g example="999" id="maximum number">%1$d</ns1:g><ns1:g example="+" id="suffix">%2$s</ns1:g></string>
@@ -1158,18 +790,12 @@
     <string description="a11y string to indicate this button switches the user to choosing a day [CHAR_LIMIT=NONE]" name="mtrl_picker_toggle_to_day_selection">Tap to switch to selecting a day</string>
     <string description="a11y string to indicate this button changes the input mode to a text field [CHAR_LIMIT=NONE]" name="mtrl_picker_toggle_to_text_input_mode">Switch to text input mode</string>
     <string description="a11y string to indicate this button switches the user to choosing a year [CHAR_LIMIT=NONE]" name="mtrl_picker_toggle_to_year_selection">Tap to switch to selecting a year</string>
-    <string name="notification_permission_name_for_title">Notifications</string>
-    <string name="notification_permission_settings_message">Notifications</string>
     <string name="password_toggle_content_description">Show password</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
-    <string name="permission_not_available_message">You have previously denied %s. Please go to settings to enable.</string>
-    <string name="permission_not_available_open_settings_option">Settings</string>
-    <string name="permission_not_available_title">%s Not Available</string>
     <string name="progressbar_description" translatable="false">Progress Bar</string>
-    <string name="project_id" translatable="false">doctor-fcd70</string>
     <string name="radiogroup_description" translatable="false">Radio Group</string>
     <string name="rn_tab_description" translatable="false">Tab</string>
     <string name="scrollbar_description" translatable="false">Scroll Bar</string>
@@ -1187,14 +813,6 @@
     <string name="tablist_description" translatable="false">Tab List</string>
     <string name="timer_description" translatable="false">Timer</string>
     <string name="toolbar_description" translatable="false">Tool Bar</string>
-    <string name="ucrop_crop">Crop</string>
-    <string name="ucrop_error_input_data_is_absent" translatable="false">Both input and output Uri must be specified</string>
-    <string name="ucrop_label_edit_photo">Edit Photo</string>
-    <string name="ucrop_label_original">Original</string>
-    <string name="ucrop_menu_crop">Crop</string>
-    <string name="ucrop_mutate_exception_hint" translatable="false">Therefore, override color resource (ucrop_color_toolbar_widget) in your app to make it work on pre-L devices</string>
-    <string name="ucrop_rotate">Rotate</string>
-    <string name="ucrop_scale">Scale</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
@@ -3085,91 +2703,6 @@
     <item name="android:windowExitAnimation">@anim/catalyst_slide_down</item>
   </style>
     <style name="EmptyTheme"/>
-    <style name="FiamUI" parent="Theme.AppCompat.Light"/>
-    <style name="FiamUI.Banner" parent="@style/FiamUI">
-        
-    </style>
-    <style name="FiamUI.Card" parent="@style/FiamUI">
-        
-    </style>
-    <style name="FiamUI.Card.ActionBar">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">right</item>
-        <item name="android:padding">@dimen/paddingSmall</item>
-    </style>
-    <style name="FiamUI.Card.ActionBar.Button" parent="@style/Base.Widget.AppCompat.Button.Borderless">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-    </style>
-    <style name="FiamUI.Card.ImageView">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:scaleType">centerCrop</item>
-        <item name="android:adjustViewBounds">true</item>
-        <item name="android:minHeight">@dimen/minImageHeight</item>
-        <item name="android:minWidth">@dimen/minImageWidth</item>
-        <item name="android:src">@drawable/image_placeholder</item>
-    </style>
-    <style name="FiamUI.Card.Scroll">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">@dimen/paddingSmall</item>
-        <item name="android:paddingLeft">@dimen/paddingSmall</item>
-        <item name="android:paddingRight">@dimen/paddingSmall</item>
-    </style>
-    <style name="FiamUI.CollapseButton" parent="FiamUI.CollapseButtonBase">
-        
-    </style>
-    <style name="FiamUI.CollapseButtonBase" parent="@style/Base.Widget.AppCompat.Button">
-        <item name="android:layout_width">24dp</item>
-        <item name="android:layout_height">24dp</item>
-        <item name="android:clickable">true</item>
-        <item name="android:background">@drawable/collapse</item>
-
-        <item name="android:layout_marginRight">-12dp</item>
-        <item name="android:layout_marginTop">-12dp</item>
-    </style>
-    <style name="FiamUI.Modal" parent="@style/FiamUI">
-        
-    </style>
-    <style name="FiamUI.ModalBody" parent="@style/Base.TextAppearance.AppCompat.Body1">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-    <style name="FiamUI.ModalImageView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:gravity">center</item>
-        <item name="android:adjustViewBounds">true</item>
-        <item name="android:minHeight">@dimen/minImageHeight</item>
-        <item name="android:minWidth">@dimen/minImageWidth</item>
-        <item name="android:src">@drawable/image_placeholder</item>
-    </style>
-    <style name="FiamUI.ResizableImageView">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:gravity">center</item>
-        <item name="android:adjustViewBounds">true</item>
-        <item name="android:minHeight">@dimen/minImageHeight</item>
-        <item name="android:minWidth">@dimen/minImageWidth</item>
-        <item name="android:src">@drawable/image_placeholder</item>
-    </style>
-    <style name="FiamUI.Text.BannerTitle" parent="@style/Base.TextAppearance.AppCompat.Body1">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-    <style name="FiamUI.Text.Title" parent="@style/Base.TextAppearance.AppCompat.Headline">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-    </style>
     <style name="MaterialAlertDialog.MaterialComponents" parent="AlertDialog.AppCompat">
     <item name="android:layout">@layout/mtrl_alert_dialog</item>
     <item name="listItemLayout">@layout/mtrl_alert_select_dialog_item</item>
@@ -3626,17 +3159,12 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
-    <style name="TextAppearance.Compat.Notification.Info.Media"/>
     <style name="TextAppearance.Compat.Notification.Line2" parent="TextAppearance.Compat.Notification.Info"/>
-    <style name="TextAppearance.Compat.Notification.Line2.Media" parent="TextAppearance.Compat.Notification.Info.Media"/>
-    <style name="TextAppearance.Compat.Notification.Media"/>
     <style name="TextAppearance.Compat.Notification.Time">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
-    <style name="TextAppearance.Compat.Notification.Time.Media"/>
     <style name="TextAppearance.Compat.Notification.Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title"/>
-    <style name="TextAppearance.Compat.Notification.Title.Media"/>
     <style name="TextAppearance.Design.CollapsingToolbar.Expanded" parent="TextAppearance.AppCompat.Display1">
     <item name="android:textColor">?android:attr/textColorPrimary</item>
   </style>
@@ -4928,53 +4456,6 @@
     <item name="android:textColor">#dddddd</item>
     <item name="android:textSize">14sp</item>
   </style>
-    <style name="ucrop_ImageViewWidgetIcon">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="android:duplicateParentState">true</item>
-    </style>
-    <style name="ucrop_TextViewCropAspectRatio">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/ucrop_height_crop_aspect_ratio_text</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:duplicateParentState">true</item>
-        <item name="android:textColor">@color/ucrop_scale_text_view_selector</item>
-    </style>
-    <style name="ucrop_TextViewWidget">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_marginTop">@dimen/ucrop_margin_top_controls_text</item>
-        <item name="android:textColor">@color/ucrop_color_widget_active</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/ucrop_text_size_controls_text</item>
-    </style>
-    <style name="ucrop_TextViewWidgetText">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/ucrop_color_widget_text</item>
-        <item name="android:layout_marginTop">@dimen/ucrop_margin_top_widget_text</item>
-        <item name="android:textSize">@dimen/ucrop_text_size_widget_text</item>
-    </style>
-    <style name="ucrop_WrapperIconState">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:background">?attr/selectableItemBackground</item>
-        <item name="android:clickable">true</item>
-        <item name="android:gravity">center</item>
-        <item name="android:orientation">vertical</item>
-    </style>
-    <style name="ucrop_WrapperRotateButton">
-        <item name="android:layout_width">@dimen/ucrop_size_wrapper_rotate_button</item>
-        <item name="android:layout_height">@dimen/ucrop_size_wrapper_rotate_button</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:clickable">true</item>
-    </style>
     <declare-styleable name="ActionBar">
         
         <attr name="navigationMode">
@@ -6133,9 +5614,6 @@
             <enum name="add" value="16"/>
         </attr>
     </declare-styleable>
-    <declare-styleable name="ConstraintLayout_Layout"><attr name="android:orientation"/><attr name="android:minWidth"/><attr name="android:minHeight"/><attr name="android:maxWidth"/><attr name="android:maxHeight"/><attr name="layout_optimizationLevel"/><attr name="constraintSet"/><attr name="barrierDirection"/><attr name="barrierAllowsGoneWidgets"/><attr name="constraint_referenced_ids"/><attr name="chainUseRtl"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/></declare-styleable>
-    <declare-styleable name="ConstraintLayout_placeholder"><attr name="emptyVisibility"/><attr name="content"/></declare-styleable>
-    <declare-styleable name="ConstraintSet"><attr name="android:orientation"/><attr name="android:id"/><attr name="android:visibility"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="android:transformPivotX"/><attr name="android:transformPivotY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_marginStart"/><attr name="android:layout_marginBottom"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginEnd"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginRight"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="barrierDirection"/><attr name="constraint_referenced_ids"/><attr name="android:maxHeight"/><attr name="android:maxWidth"/><attr name="android:minHeight"/><attr name="android:minWidth"/><attr name="barrierAllowsGoneWidgets"/><attr name="chainUseRtl"/></declare-styleable>
     <declare-styleable name="CoordinatorLayout">
         
         <attr format="reference" name="keylines"/>
@@ -6555,7 +6033,6 @@
         
         <attr name="android:color"/>
     </declare-styleable>
-    <declare-styleable name="LinearConstraintLayout"><attr name="android:orientation"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat">
         
         <attr name="android:orientation"/>
@@ -6592,19 +6069,6 @@
         
         <attr name="android:dropDownHorizontalOffset"/>
     </declare-styleable>
-    <declare-styleable name="LoadingImageView"><attr name="imageAspectRatioAdjust">
-<enum name="none" value="0"/>
-
-<enum name="adjust_width" value="1"/>
-
-<enum name="adjust_height" value="2"/>
-
-</attr>
-
-<attr format="float" name="imageAspectRatio"/>
-
-<attr format="boolean" name="circleCrop"/>
-</declare-styleable>
     <declare-styleable name="MaterialAlertDialog">
     <attr format="dimension" name="backgroundInsetStart"/>
     <attr format="dimension" name="backgroundInsetTop"/>
@@ -6909,10 +6373,6 @@
         
         <attr format="reference" name="subMenuArrow"/>
     </declare-styleable>
-    <declare-styleable name="ModalLayout">
-    <attr format="float" name="maxWidthPct" type="dimen"/>
-    <attr format="float" name="maxHeightPct" type="dimen"/>
-  </declare-styleable>
     <declare-styleable name="NavigationView">
     <attr name="android:background"/>
     <attr name="android:fitsSystemWindows"/>
@@ -7067,25 +6527,6 @@
       <enum name="cut" value="1"/>
     </attr>
   </declare-styleable>
-    <declare-styleable name="SignInButton"><attr format="reference" name="buttonSize">
-<enum name="standard" value="0"/>
-
-<enum name="wide" value="1"/>
-
-<enum name="icon_only" value="2"/>
-
-</attr>
-<attr format="reference" name="colorScheme">
-<enum name="dark" value="0"/>
-
-<enum name="light" value="1"/>
-
-<enum name="auto" value="2"/>
-
-</attr>
-
-<attr format="reference|string" name="scopeUris"/>
-</declare-styleable>
     <declare-styleable name="SimpleDraweeView" parent="GenericDraweeHierarchy">
 
     
@@ -7222,10 +6663,6 @@
     <declare-styleable name="StateListDrawableItem">
         
         <attr name="android:drawable"/>
-    </declare-styleable>
-    <declare-styleable name="SwipeRefreshLayout">
-        
-        <attr format="color" name="swipeRefreshLayoutProgressSpinnerBackgroundColor"/>
     </declare-styleable>
     <declare-styleable name="SwitchCompat">
         
@@ -7698,35 +7135,5 @@
         
         <attr name="android:inflatedId"/>
         <attr name="android:id"/>
-    </declare-styleable>
-    <declare-styleable name="ucrop_AspectRatioTextView">
-
-        <attr format="string" name="ucrop_artv_ratio_title"/>
-
-        <attr format="float" name="ucrop_artv_ratio_x"/>
-        <attr format="float" name="ucrop_artv_ratio_y"/>
-
-    </declare-styleable>
-    <declare-styleable name="ucrop_UCropView">
-
-        
-        <attr format="float" name="ucrop_aspect_ratio_x"/>
-        <attr format="float" name="ucrop_aspect_ratio_y"/>
-
-        
-        <attr format="boolean" name="ucrop_show_oval_crop_frame"/>
-        <attr format="boolean" name="ucrop_circle_dimmed_layer"/>
-        <attr format="color" name="ucrop_dimmed_color"/>
-
-        <attr format="dimension" name="ucrop_grid_stroke_size"/>
-        <attr format="color" name="ucrop_grid_color"/>
-        <attr format="integer" name="ucrop_grid_row_count"/>
-        <attr format="integer" name="ucrop_grid_column_count"/>
-        <attr format="boolean" name="ucrop_show_grid"/>
-
-        <attr format="dimension" name="ucrop_frame_stroke_size"/>
-        <attr format="color" name="ucrop_frame_color"/>
-        <attr format="boolean" name="ucrop_show_frame"/>
-
     </declare-styleable>
 </resources>

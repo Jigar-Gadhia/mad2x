@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { ImageBackground, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, StatusBar, ActivityIndicator } from "react-native";
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { Colors } from '../assets/colors/colors.js';
@@ -6,12 +6,11 @@ import { fonts } from '../assets/fonts/fonts.js';
 import Icon from 'react-native-vector-icons/Ionicons.js';
 import axios from "react-native-axios";
 import { Rating } from "react-native-ratings";
-import Animated, { Easing, FadeIn, FadeInUp, SlideInRight, SlideOutRight, useSharedValue, withTiming, useAnimatedStyle, withSpring, SlideInDown, SlideInUp, FadeInDown } from "react-native-reanimated";
+import Animated, { FadeIn, FadeInUp, SlideInRight, SlideOutRight, useSharedValue } from "react-native-reanimated";
 import { useQuery } from "@tanstack/react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAppState } from '@react-native-community/hooks';
 import notifee, { AndroidImportance, AndroidVisibility } from '@notifee/react-native';
-import messaging from '@react-native-firebase/messaging';
 
 const Home = (navigation) => {
     const [url, setUrl] = useState("")

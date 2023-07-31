@@ -61,5 +61,25 @@
       <option name="name" value="BintrayJCenter" />
       <option name="url" value="https://jcenter.bintray.com/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven4" />
+      <option name="name" value="maven4" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../My%20project/mad2x/node_modules/@notifee/react-native/android/libs/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2" />
+      <option name="name" value="maven2" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../My%20project/mad2x/node_modules/jsc-android/dist/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven5" />
+      <option name="name" value="maven5" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../My%20project/mad2x/node_modules/react-native-screens/node_modules/react-native/android" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="react-native-firebase_firestore -&gt; React Native sources" />
+      <option name="name" value="react-native-firebase_firestore -&gt; React Native sources" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../My%20project/mad2x/node_modules/react-native/android/" />
+    </remote-repository>
   </component>
 </project>
