@@ -33,7 +33,26 @@ npm install
 yarn install
 ```
 # Running the App
-1. Android
+## Android
+   
+  Create debug keystore
+   
+   ```
+   keytool -genkey -v -keystore [debug_keystore_name] -storepass [keystore_password] -alias [alias_name] -keypass [key_password] -keyalg RSA -keysize 2048 -validity 10000
+   ```
+   
+   Replace the placeholders in square brackets with the desired values:
+   
+      [debug_keystore_name]: The filename for the debug keystore (e.g., debug.keystore).
+   
+      [keystore_password]: The password for the keystore. Remember this password; you'll need it later during development.
+   
+      [alias_name]: An alias for the key entry in the keystore. You can use "androiddebugkey" or any other meaningful name.
+   
+      [key_password]: The password for the key entry. You can use the same password as the keystore password.
+   
+      
+  Run Android
 ```
 npm run android
 # or
