@@ -31,8 +31,6 @@ cd mad2x
 npm install
 # or
 yarn install
-# or
-npx react-native run-android
 ```
 # Running the App
 ## Android
