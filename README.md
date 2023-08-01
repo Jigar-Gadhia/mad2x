@@ -34,8 +34,14 @@ yarn install
 ```
 # Running the App
 ## Android
+
+   Open command prompt / terminal inside the root directory of the project and run following command :
+
+   ```
+   cd android/app
+   ```
    
-  Create debug keystore
+  Create debug keystore :
    
    ```
    keytool -genkey -v -keystore [debug_keystore_name] -storepass [keystore_password] -alias [alias_name] -keypass [key_password] -keyalg RSA -keysize 2048 -validity 10000
@@ -52,11 +58,13 @@ yarn install
       [key_password]: The password for the key entry. You can use the same password as the keystore password.
    
       
-  Run Android
+  Run Android :
 ```
 npm run android
 # or
 yarn android
+# or
+npx react-native run-android # I personally use this command
 ```
 # Dependencies
 Please refer [Package.json](https://github.com/Jigar-Gadhia/mad2x/blob/main/package.json) for more information
