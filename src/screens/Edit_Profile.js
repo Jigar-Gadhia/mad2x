@@ -85,7 +85,7 @@ const Profile_Edit = (navigation) => {
     const [address, SetAddress] = useState("");
 
     const static_image = async () => {
-        await AsyncStorage.setItem('image_uri', url)
+        await AsyncStorage.setItem('image_uri', url.toString())
     }
 
     const ApiPost = () => {
@@ -137,8 +137,7 @@ const Profile_Edit = (navigation) => {
         const result = await launchImageLibrary()
         result.assets.map(async (item) => {
             await AsyncStorage.setItem('image_uri', item.uri)
-            const img = await AsyncStorage.getItem("image_uri")
-            setUrl(img)
+            setUrl(item.uri)
         })
         navigation.navigation, dispatch(CommonActions.reset(
             {
@@ -155,9 +154,7 @@ const Profile_Edit = (navigation) => {
         const result = await launchCamera()
         result.assets.map(async (item) => {
             await AsyncStorage.setItem('image_uri', item.uri)
-            const img = await AsyncStorage.getItem("image_uri")
-            setUrl(img)
-
+            setUrl(item.uri)
         })
     }
 

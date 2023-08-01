@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, Image, Alert } from 'react-native';
 import { Colors } from '../assets/colors/colors.js';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const Medications = (navigation) => {
     return (
         <View style={{backgroundColor: Colors.white, height: hp("100%")}}>
-            <TouchableOpacity onPress={() => navigation.navigation.openDrawer()}>
+            <TouchableOpacity onPress={() => Alert.alert("Desclaimer", "Drawer feature is under development !")}>
                 <Image source={require('../images/menu.png')} style={Styles.drawer_image} />
             </TouchableOpacity>
             <View style={Styles.container}>

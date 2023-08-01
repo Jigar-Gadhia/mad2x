@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, FlatList, ScrollView, useColorScheme } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, FlatList, ScrollView, useColorScheme, Alert } from 'react-native';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import Icon from 'react-native-vector-icons/Ionicons';
 import CalendarStrip from 'react-native-calendar-strip';
@@ -19,6 +19,7 @@ const Appointment = (navigation) => {
     const [isFocus, setIsFocus] = useState(false);
     const [active, setActive] = useState("")
     const [ind, setInd] = useState(0);
+    const [yind, setYind] = useState(0);
     const [select, setSelect] = useState("")
 
     const calendar = new JsonCalendar();
@@ -62,24 +63,28 @@ const Appointment = (navigation) => {
             fontFamily: fonts.semibold
         },
         dropdown_month: {
-            width: wp("25%"),
-            height: hp("41%"),
+            // width: wp("25%"),
+            // height: hp("41%"),
             backgroundColor: scheme.white,
             elevation: 10,
             marginLeft: wp("12%"),
             marginTop: hp("14%"),
             borderRadius: 15,
-            position: "absolute"
+            position: "absolute",
+            borderWidth: 1,
+            borderColor: scheme.black
         },
         dropdown_year: {
-            width: wp("24%"),
-            marginLeft: wp("8%"),
-            fontFamily: fonts.bold,
-            color: scheme.black,
-            backgroundColor: theme == 'dark' ? scheme.dark_grey : scheme.white,
-            borderRadius: 12,
-            paddingLeft: wp("3%"),
-            elevation: theme == 'dark' ? 10 : 0,
+            // width: wp("25%"),
+            // height: hp("30%"),
+            marginLeft: wp("51%"),
+            backgroundColor: scheme.white,
+            elevation: 10,
+            marginTop: hp("14%"),
+            borderRadius: 15,
+            position: "absolute",
+            borderWidth: 1,
+            borderColor: scheme.black
 
         },
         time_view: {
@@ -115,7 +120,7 @@ const Appointment = (navigation) => {
             alignItems: "center",
             justifyContent: "center",
             borderRadius: 32,
-            marginBottom: hp("5%")
+            marginTop: hp("7%")
         },
         appoint_text: {
             fontFamily: fonts.semibold,
@@ -154,16 +159,16 @@ const Appointment = (navigation) => {
         setActive(id)
     }
 
-    const years = [
-        { label: '1999', value: '1' },
-        { label: '2000', value: '2' },
-        { label: '2001', value: '3' },
-        { label: '2002', value: '4' },
-        { label: '2003', value: '5' },
-        { label: '2004', value: '6' },
-        { label: '2005', value: '7' },
-        { label: '2006', value: '8' }
-    ];
+    const year_name = [
+        { yname: "1999" },
+        { yname: "2000" },
+        { yname: "2001" },
+        { yname: "2002" },
+        { yname: "2003" },
+        { yname: "2004" },
+        { yname: "2005" },
+        { yname: "2000" }
+    ]
 
     const timeSlots = [
         {
@@ -261,6 +266,8 @@ const Appointment = (navigation) => {
         )
     }
 
+    console.log(year_name[2].yname)
+
     return (
         <ScrollView style={Styles.bg}>
             <TouchableOpacity onPress={() => navigation.navigation.dispatch(CommonActions.reset({
@@ -277,46 +284,11 @@ const Appointment = (navigation) => {
                     <Text style={{ color: scheme.black }}>{ind == "" ? "Month" : month[ind]}</Text>
                     <Icon name={value == true ? "chevron-up-outline" : "chevron-down-outline"} size={20} color={scheme.black} />
                 </TouchableOpacity>
-                {/* <Dropdown data={month} placeholder={month[0]}
-                    containerStyle={{ borderRadius: 12, marginTop: hp("1%"), elevation: 10 }}
-                    inputSearchStyle={{ borderRadius: 12 }}
-                    fontFamily={fonts.bold}
-                    placeholderTextColor="red"
-                    placeholderStyle={{ color: scheme.grey }}
-                    style={Styles.dropdown_month}
-                    labelField="label"
-                    valueField="value"
-                    search
-                    searchPlaceholder="Search..."
-                    onFocus={() => setIsFocus(true)}
-                    onBlur={() => setIsFocus(false)}
-                    value={value}
-                    onChange={index => {
-                        setValue(index);
-                        setIsFocus(false);
-                        console.log("month", index)
-                    }}
-                /> */}
-                <Dropdown data={years} placeholder='...'
-                    containerStyle={{ borderRadius: 12, marginTop: hp("1%"), elevation: 10 }}
-                    inputSearchStyle={{ borderRadius: 12 }}
-                    fontFamily={fonts.bold}
-                    // placeholderTextColor="red"
-                    placeholderStyle={{ color: scheme.black }}
-                    style={Styles.dropdown_year}
-                    labelField="label"
-                    valueField="value"
-                    search
-                    searchPlaceholder="Search..."
-                    sea
-                    onFocus={() => setIsFocus(true)}
-                    onBlur={() => setIsFocus(false)}
-                    value={yvalue}
-                    onChange={item => {
-                        setY(item.value);
-                        setIsFocus(false);
-                    }}
-                />
+                <TouchableOpacity style={Styles.years_btn} onPress={() => setY(!yvalue)}>
+                    <Text style={{ color: scheme.black }}>{yind == "" ? "Year" : year_name[yind].yname}</Text>
+                    <Icon name={yvalue == true ? "chevron-up-outline" : "chevron-down-outline"} size={20} color={scheme.black} />
+                </TouchableOpacity>
+
             </View>
             {value == true && <Animated.View entering={FadeInUp} exiting={FadeOutUp} style={Styles.dropdown_month}>
                 <FlatList scrollEnabled={false} showsVerticalScrollIndicator={false} data={month} renderItem={(item, index) => {
@@ -325,12 +297,26 @@ const Appointment = (navigation) => {
                             setInd(item.index)
                             setValue(false)
                         }}>
-                            <Text style={{ color: scheme.dark_grey, margin: 5 }} key={index}>{item.item}</Text>
+                            <Text style={{ color: scheme.black, marginHorizontal: wp("5%"), marginVertical: hp("2%") }} key={index}>{item.item}</Text>
                         </TouchableOpacity>
                     )
                 }} />
             </Animated.View>}
-            <CalendarStrip scrollable={true} scrollerPaging={true} showMonth={true} 
+            {yvalue == true && <Animated.View entering={FadeInUp} exiting={FadeOutUp} style={Styles.dropdown_year}>
+                {year_name.map
+                    ((item, index) => {
+                        return (
+                            <TouchableOpacity onPress={() => {
+                                setYind(index)
+                                setY(false)
+                            }}>
+                                <Text key={index} style={{ color: scheme.black, marginHorizontal: wp("5%"), marginVertical: hp("2%") }}>{item.yname}</Text>
+                            </TouchableOpacity>
+                        )
+                    })}
+            </Animated.View>}
+
+            <CalendarStrip scrollable={true} scrollerPaging={true} showMonth={false}
                 style={{ height: hp("10%"), width: wp("100%"), paddingTop: 20, paddingBottom: 10, paddingHorizontal: wp("6%"), zIndex: -1 }}
                 // calendarHeaderStyle={{ color: scheme.white }}
                 highlightDateNumberStyle={{
@@ -393,7 +379,7 @@ const Appointment = (navigation) => {
 
                         )
                     }} />
-                    <TouchableOpacity style={Styles.appoint_btn} >
+                    <TouchableOpacity style={Styles.appoint_btn} onPress={() => Alert.alert("Desclaimer", "Appointment feature is under development !")}>
                         <Text style={Styles.appoint_text}>Book An Appointment</Text>
                     </TouchableOpacity>
                 </View>

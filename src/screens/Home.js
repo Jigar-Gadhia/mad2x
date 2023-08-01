@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ImageBackground, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, StatusBar, ActivityIndicator } from "react-native";
+import { ImageBackground, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, StatusBar, ActivityIndicator, Alert } from "react-native";
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { Colors } from '../assets/colors/colors.js';
 import { fonts } from '../assets/fonts/fonts.js';
@@ -16,11 +16,7 @@ const Home = (navigation) => {
     const [url, setUrl] = useState("")
     const up = useSharedValue(-160);
     const down = useSharedValue(0);
-
-    const get_image = async () => {
-        const img = await AsyncStorage.getItem("image_uri")
-        setUrl(img)
-    }
+    const [edit, setEdit] = useState(true);
 
     const state = useAppState();
     console.log("state", state)
@@ -45,9 +41,6 @@ const Home = (navigation) => {
 
     state === "background" ? notify() : cancel();
 
-    useEffect(() => {
-        get_image();
-    }, [])
 
     const [data_doc, setData_doc] = useState("")
     const [showD, setShowd] = useState(false)
@@ -64,9 +57,13 @@ const Home = (navigation) => {
                 format: "json"
             }
         })
+        const img = await AsyncStorage.getItem("image_uri")
+        setUrl(img);
         setData_doc(response.data.response)
         return response;
     }
+
+    console.log(url)
 
     const GetDoc = () => {
         const { data, isLoading, error } = useQuery(['doc_get'], doc_data, { refetchOnMount: true, refetchOnReconnect: true });
@@ -88,7 +85,7 @@ const Home = (navigation) => {
                     </TouchableOpacity>
                     <View style={Styles.profile_bg}>
                         <View style={Styles.bg_image}>
-                            <ImageBackground source={{ uri: image }} resizeMode='contain' style={{ height: hp("15%") }} borderRadius={16}>
+                            <ImageBackground source={{ uri: url }} resizeMode='contain' style={{ height: hp("15%") }} borderRadius={16}>
                                 <View style={Styles.profile_indicator}></View>
                             </ImageBackground>
                         </View>
@@ -129,7 +126,7 @@ const Home = (navigation) => {
                             <Text style={Styles.doc_exp_data}>{data_doc[ind].Reviews}</Text>
                         </View>
                         <View style={Styles.book_app_view}>
-                            <TouchableOpacity style={Styles.book_app_btn}>
+                            <TouchableOpacity style={Styles.book_app_btn} onPress={() => navigation.navigation.navigate("Appointment")}>
                                 <Text style={Styles.book_app_text}>Book An Appointment</Text>
                             </TouchableOpacity>
                         </View>
@@ -168,28 +165,8 @@ const Home = (navigation) => {
     },
     {
         path: require('../images/deases.png'),
-        name: "Deases",
+        name: "Patients",
         color: Colors.blue
-    },
-    {
-        path: require('../images/home.png'),
-        name: "Home Visit",
-        color: Colors.cyan
-    },
-    {
-        path: require('../images/person.png'),
-        name: "My Profile",
-        color: Colors.blue
-    },
-    {
-        path: require('../images/set.png'),
-        name: "Communication",
-        color: Colors.green
-    },
-    {
-        path: require('../images/settings.png'),
-        name: "Settings",
-        color: Colors.cyan
     }
     ];
 
@@ -232,65 +209,43 @@ const Home = (navigation) => {
     );
 
     const renderDoc = ({ item, index }) => {
-        if (doclist != "") {
-            return (
-                <View>
-                    {doclist.map((item, index) => {
-                        return (<TouchableOpacity style={[Styles.doc_banner, { backgroundColor: "pink" }]} onPress={() => toggleD(index)}>
-                            <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
-                                <View style={Styles.doc_indicator}></View>
-                            </ImageBackground>
-                            <View>
-                                <Text style={Styles.doc_banner_header} key={index}>{item.SpecialityName != "" ? item.SpecialityName : "Speciality not specified"}</Text>
-                                <Text style={Styles.doc_banner_text}>{item.DoctorName != "" ? item.DoctorName : "Name not specifeid"}</Text>
-                            </View>
-                            <View>
-                                <Icon name="ellipse" size={10} color={Colors.options} style={{ marginVertical: hp("1%") }} />
-                                <Icon name="ellipse" size={10} color={Colors.options} style={{ marginBottom: hp("1%") }} />
-                            </View>
-                        </TouchableOpacity>)
-                    })}
-                </View>
-            )
-        } else {
-            return (
-                <View>
-                    {doc == false ? (
+        return (
+            <View>
+                {doc == false ? (
+                    <View>
+                        {index < 3 && (<Animated.View entering={FadeInUp.delay(100 * index)}>
+                            <TouchableOpacity style={[Styles.doc_banner, index == 2 ? { marginBottom: hp("4%") } : null]} onPress={() => toggleD(index)}>
+                                <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
+                                    <View style={Styles.doc_indicator}></View>
+                                </ImageBackground>
+                                <View>
+                                    <Text style={Styles.doc_banner_header}>{item.SpecialityName != "" ? item.SpecialityName : "Speciality not specified"}</Text>
+                                    <Text style={Styles.doc_banner_text}>{item.DoctorName != "" ? item.DoctorName : "Name not specifeid"}</Text>
+                                </View>
+                                <View>
+                                    <Icon name="ellipse" size={10} color={Colors.options} style={{ marginVertical: hp("1%") }} />
+                                    <Icon name="ellipse" size={10} color={Colors.options} style={{ marginBottom: hp("1%") }} />
+                                </View>
+                            </TouchableOpacity></Animated.View>
+                        )}
+                    </View>
+                ) : (index < 10 && <Animated.View entering={FadeInUp.delay(100 * index)}>
+                    <TouchableOpacity style={Styles.doc_banner} onPress={() => toggleD(index)}>
+                        <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
+                            <View style={Styles.doc_indicator}></View>
+                        </ImageBackground>
                         <View>
-                            {index < 3 && (<Animated.View entering={FadeInUp.delay(100 * index)}>
-                                <TouchableOpacity style={[Styles.doc_banner, index == 2 ? { marginBottom: hp("4%") } : null]} onPress={() => toggleD(index)}>
-                                    <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
-                                        <View style={Styles.doc_indicator}></View>
-                                    </ImageBackground>
-                                    <View>
-                                        <Text style={Styles.doc_banner_header}>{item.SpecialityName != "" ? item.SpecialityName : "Speciality not specified"}</Text>
-                                        <Text style={Styles.doc_banner_text}>{item.DoctorName != "" ? item.DoctorName : "Name not specifeid"}</Text>
-                                    </View>
-                                    <View>
-                                        <Icon name="ellipse" size={10} color={Colors.options} style={{ marginVertical: hp("1%") }} />
-                                        <Icon name="ellipse" size={10} color={Colors.options} style={{ marginBottom: hp("1%") }} />
-                                    </View>
-                                </TouchableOpacity></Animated.View>
-                            )}
+                            <Text style={Styles.doc_banner_header}>{item.SpecialityName != "" ? item.SpecialityName : "Speciality not specified"}</Text>
+                            <Text style={Styles.doc_banner_text}>{item.DoctorName != "" ? item.DoctorName : "Name not specifeid"}</Text>
                         </View>
-                    ) : (index < 10 && <Animated.View entering={FadeInUp.delay(100 * index)}>
-                        <TouchableOpacity style={Styles.doc_banner} onPress={() => toggleD(index)}>
-                            <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
-                                <View style={Styles.doc_indicator}></View>
-                            </ImageBackground>
-                            <View>
-                                <Text style={Styles.doc_banner_header}>{item.SpecialityName != "" ? item.SpecialityName : "Speciality not specified"}</Text>
-                                <Text style={Styles.doc_banner_text}>{item.DoctorName != "" ? item.DoctorName : "Name not specifeid"}</Text>
-                            </View>
-                            <View>
-                                <Icon name="ellipse" size={10} color={Colors.options} style={{ marginVertical: hp("1%") }} />
-                                <Icon name="ellipse" size={10} color={Colors.options} style={{ marginBottom: hp("1%") }} />
-                            </View>
-                        </TouchableOpacity></Animated.View>
-                    )}
-                </View>
-            )
-        }
+                        <View>
+                            <Icon name="ellipse" size={10} color={Colors.options} style={{ marginVertical: hp("1%") }} />
+                            <Icon name="ellipse" size={10} color={Colors.options} style={{ marginBottom: hp("1%") }} />
+                        </View>
+                    </TouchableOpacity></Animated.View>
+                )}
+            </View>
+        )
     };
 
     const searchRes = (text) => {
@@ -313,7 +268,7 @@ const Home = (navigation) => {
             <View style={{ height: hp("91.4%"), marginLeft: wp("3%") }}>
                 <View style={{ flex: 1 }}>
                     <View style={Styles.drawer}>
-                        <TouchableOpacity onPress={() => navigation.navigation.dispatch(DrawerActions.openDrawer())}>
+                        <TouchableOpacity onPress={() => Alert.alert("Desclaimer", "Drawer feature is under development !")}>
                             <Image source={require('../images/menu.png')} style={Styles.drawer_image} />
                         </TouchableOpacity>
                     </View>
@@ -326,8 +281,12 @@ const Home = (navigation) => {
                             <TextInput placeholder="Search e.g. Dr Louis"
                                 placeholderTextColor={Colors.search_place}
                                 style={Styles.search_input}
-                                onChangeText={(text) => {
-                                    searchRes(text);
+                                editable={edit}
+                                onTouchStart={() => {
+                                    Alert.alert("Desclaimer", "Search feature is in development", [
+                                        { text: "Ok", onPress: () => setEdit(true) }
+                                    ])
+                                    setEdit(false)
                                 }} />
                             <TouchableOpacity style={Styles.search_button}
                                 onPress={() => {
@@ -341,7 +300,7 @@ const Home = (navigation) => {
 
                     <View style={Styles.flatlist_header}>
                         <Text style={Styles.flatlist_header_text}>Categories</Text>
-                        <View style={{ width: wp("100%"), height: hp("13%"), marginLeft: wp("5%") }}>
+                        <View style={{ width: wp("100%"), height: hp("13%") }}>
                             <FlatList horizontal showsHorizontalScrollIndicator={false} data={dataCat} renderItem={renderCat} />
                         </View>
 
@@ -352,7 +311,7 @@ const Home = (navigation) => {
                             translateY: doc == true ? up.value : down.value
                         }],
                         zIndex: 1,
-                        
+
                     }
                     } >
                         <View style={Styles.doc_view}>
@@ -551,7 +510,9 @@ const Styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 14,
-        marginHorizontal: wp("3%"),
+        marginLeft: wp("7.3%"),
+        marginRight: wp("-2%"),
+        elevation: 5
     },
     detail_back: {
         marginHorizontal: wp("5%"),
@@ -559,7 +520,6 @@ const Styles = StyleSheet.create({
     },
     profile_bg: {
         width: wp("85%"),
-        // height: hp("60%"),
         backgroundColor: Colors.white,
         borderRadius: 39,
         alignSelf: "center",

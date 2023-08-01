@@ -17,6 +17,7 @@ const Profile = (navigation) => {
     const [url, setUrl] = useState("");
     const [uname, setUname] = useState("");
     const [pwd, setPass] = useState("");
+    const default_image = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
 
     useEffect(() => {
         get_email();
@@ -49,21 +50,8 @@ const Profile = (navigation) => {
 
     const get_image = async() => {
         const path = await AsyncStorage.getItem('image_uri')
-        console.log("path", path)
         setUrl(path)
-        // if(path == null)
-        // {
-        //     setUrl("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-        //     alert(url)
-        // }
-        // else{
-        //     setUrl(path)
-        //     alert(url)
-        // }
-        
     }
-
-    console.log("url", url)
 
     const Apidata = async () => {
         const did = await AsyncStorage.getItem('dataid')
@@ -190,7 +178,7 @@ const Profile = (navigation) => {
                                     marginHorizontal: wp("2%"),
                                     marginBottom: hp("1.2%")
                                 }}>
-                                    <Image style={Styles.profile_image} source={{ uri: url }} />
+                                    <Image style={Styles.profile_image} source={{ uri: url == "" ? default_image : url }} />
                                     <TouchableOpacity style={Styles.profile_btn} onPress={() => navigation.navigation.navigate("Edit_Profile")}>
                                         <Text style={Styles.profile_btn_text}>My Profile</Text>
                                     </TouchableOpacity>

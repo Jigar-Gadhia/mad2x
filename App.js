@@ -61,7 +61,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    setCheck();
+    check_status();
     setTimeout(() => {
       setSplash(false);
     }, 4000);
