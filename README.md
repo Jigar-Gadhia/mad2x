@@ -44,19 +44,44 @@ yarn install
   Create debug keystore :
    
    ```
-   keytool -genkey -v -keystore [debug_keystore_name] -storepass [keystore_password] -alias [alias_name] -keypass [key_password] -keyalg RSA -keysize 2048 -validity 10000
+   keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000
    ```
    
-   Replace the placeholders in square brackets with the desired values:
-   
-      [debug_keystore_name]: The filename for the debug keystore (e.g., debug.keystore).
-   
-      [keystore_password]: The password for the keystore. Remember this password; you'll need it later during development.
-   
-      [alias_name]: An alias for the key entry in the keystore. You can use "androiddebugkey" or any other meaningful name.
-   
-      [key_password]: The password for the key entry. You can use the same password as the keystore password.
-   
+   Make sure app/build.gradle file contain following details:
+   ```
+android {
+    ...
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        ...
+    }
+    ...
+    signingConfigs {
+        debug {
+            storeFile file('relative/path/to/your/debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+        ...
+    }
+    ...
+}
+   ```
+ Clean the project by running following commands in terminal / command prompt from the project's root directory: 
+```
+cd android
+```
+For windows
+```
+gradlew clean 
+```
+For Linux / Mac
+```
+./gradlew clean
+```
       
   Run Android :
 ```
