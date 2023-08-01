@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, StatusBar, TextInput, ScrollView, ActivityIndicator } from "react-native";
+import { FlatList, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, StatusBar, ActivityIndicator, useColorScheme } from "react-native";
 import { Colors } from "../assets/colors/colors.js";
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { fonts } from "../assets/fonts/fonts";
@@ -151,7 +151,7 @@ const Profile = (navigation) => {
         isLoading ? <Animated.View entering={FadeIn} style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <ActivityIndicator size={"large"} color={Colors.date} />
         </Animated.View> : error || isFetched == false ? <Animated.View entering={FadeIn} style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text style={{fontSize: 20}}>Something went
+            <Text style={{fontSize: 20, color: Colors.black}}>Something went
             <Text style={{color: Colors.red}}> wrong</Text>, please
             <Text style={{color: Colors.red}}> re-login !</Text></Text>
             <TouchableOpacity style={{borderRadius: 10, backgroundColor: Colors.date, marginTop: hp("3%")}} onPress={() => navigation.navigation.dispatch(CommonActions.reset({ routes: [{ name: "Login" }]}))}>

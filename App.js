@@ -61,6 +61,7 @@ const App = () => {
   }
 
   useEffect(() => {
+    setCheck();
     setTimeout(() => {
       setSplash(false);
     }, 4000);
@@ -71,7 +72,7 @@ const App = () => {
 
   return (
     splash == true ? <Splashscreen /> : <QueryClientProvider client={queryClient}><NavigationContainer>
-      <Stack.Navigator initialRouteName={check == true ? "TabNav" : "DrawNav"} screenOptions={{ headerShown: false }} key="main">
+      <Stack.Navigator initialRouteName={check == true ? "TabNav" : "Login"} screenOptions={{ headerShown: false }} key="main">
         <Stack.Screen name="Login" component={Login} options={{ animation: "slide_from_bottom" }} />
         <Stack.Screen name="Signup" component={Signup} options={{ animation: "slide_from_bottom" }} />
         <Stack.Screen name="TabNav" component={TabNav} options={{ animation: "slide_from_bottom" }} />
