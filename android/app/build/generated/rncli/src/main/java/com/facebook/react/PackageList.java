@@ -17,6 +17,8 @@ import io.invertase.notifee.NotifeePackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // react-native-flipper
 import com.facebook.flipper.reactnative.FlipperPackage;
+// react-native-fs
+import com.rnfs.RNFSPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 // react-native-image-picker
@@ -31,6 +33,8 @@ import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 // react-native-splash-screen
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+// react-native-svg
+import com.horcrux.svg.SvgPackage;
 // react-native-vector-icons
 import com.oblador.vectoricons.VectorIconsPackage;
 // react-native-flipper-performance-plugin
@@ -83,6 +87,7 @@ public class PackageList {
       new NotifeePackage(),
       new AsyncStoragePackage(),
       new FlipperPackage(),
+      new RNFSPackage(),
       new RNGestureHandlerPackage(),
       new ImagePickerPackage(),
       new ReactNativePushNotificationPackage(),
@@ -90,6 +95,7 @@ public class PackageList {
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
       new SplashScreenReactPackage(),
+      new SvgPackage(),
       new VectorIconsPackage(),
       new FlipperPerformancePluginPackage()
     ));

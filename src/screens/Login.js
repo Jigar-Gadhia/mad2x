@@ -51,11 +51,12 @@ const Login = (navigation) => {
 
     const handleValidation = async () => {
         // console.log("handle");
-        // setusrErr("");
-        // setpassErr("");
 
         if (user == "") {
             setusrErr("User Name is required")
+        }
+        else {
+            setusrErr("");
         }
         if (pass == "") {
             setpassErr("Password is required")
@@ -73,6 +74,9 @@ const Login = (navigation) => {
             else {
                 setNoti(false)
             }
+        }
+        else {
+            setpassErr("");
         }
 
     }

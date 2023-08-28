@@ -63,8 +63,6 @@ const Appointment = (navigation) => {
             fontFamily: fonts.semibold
         },
         dropdown_month: {
-            // width: wp("25%"),
-            // height: hp("41%"),
             backgroundColor: scheme.white,
             elevation: 10,
             marginLeft: wp("12%"),
@@ -75,8 +73,6 @@ const Appointment = (navigation) => {
             borderColor: scheme.black
         },
         dropdown_year: {
-            // width: wp("25%"),
-            // height: hp("30%"),
             marginLeft: wp("51%"),
             backgroundColor: scheme.white,
             elevation: 10,
@@ -266,6 +262,20 @@ const Appointment = (navigation) => {
         )
     }
 
+    const renderMonth = () => {
+        <Animated.View entering={FadeInUp} exiting={FadeOutUp} style={Styles.dropdown_month}>
+            <FlatList scrollEnabled={false} showsVerticalScrollIndicator={false} data={month} renderItem={(item, index) => {
+                return (
+                    <TouchableOpacity onPress={() => {
+                        setInd(item.index)
+                        setValue(false)
+                    }}>
+                        <Text style={{ color: scheme.black, marginHorizontal: wp("5%"), marginVertical: hp("2%") }} key={index}>{item.item}</Text>
+                    </TouchableOpacity>
+                )
+            }} /></Animated.View>
+    }
+
     console.log(year_name[2].yname)
 
     return (
@@ -315,6 +325,11 @@ const Appointment = (navigation) => {
                         )
                     })}
             </Animated.View>}
+
+            {/* <Calendar
+                style={{ borderWidth: 0 }}
+                startView={CalendarViewModes.YEAR}
+                initialVisibleDate={initialVisibleDate} /> */}
 
             <CalendarStrip scrollable={true} scrollerPaging={true} showMonth={false}
                 style={{ height: hp("10%"), width: wp("100%"), paddingTop: 20, paddingBottom: 10, paddingHorizontal: wp("6%"), zIndex: -1 }}

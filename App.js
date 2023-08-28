@@ -13,7 +13,7 @@ import Settings from "./src/screens/Settings.js";
 import { View, StyleSheet, Image, BackHandler } from 'react-native';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { Colors } from "./src/assets/colors/colors.js";
-import Animated, { FadeIn, FadeOut, FadeOutDown } from "react-native-reanimated";
+import Animated, { FadeIn, FadeInDown, FadeInUp, FadeOut } from "react-native-reanimated";
 import { connectToDevTools } from "react-devtools-core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -45,17 +45,17 @@ const App = () => {
   const Splashscreen = () => {
     return (
       <Animated.View entering={FadeIn} exiting={FadeOut} style={Styles.container}>
-        <View style={{ flex: 1, alignItems: "flex-start" }}>
+        <Animated.View entering={FadeInDown.delay(500).duration(500)} style={{ flex: 1, alignItems: "flex-start" }}>
           <Image source={require('./src/images/front1.png')} style={Styles.image_top} />
           <Image style={Styles.image_bg_top} source={require('./src/images/back1.png')} />
-        </View>
-        <View style={Styles.logo_view}>
+        </Animated.View>
+        <Animated.View entering={FadeIn.delay(1000).duration(500)} style={Styles.logo_view}>
           <Image style={Styles.logo} source={require('./src/images/logo.png')} />
-        </View>
-        <View style={{ flex: 1, marginLeft: wp("12%"), marginTop: hp("35%") }}>
+        </Animated.View>
+        <Animated.View entering={FadeInUp.delay(500).duration(500)} style={{ flex: 1, marginLeft: wp("12%"), marginTop: hp("35%") }}>
           <Image source={require('./src/images/front1.png')} style={Styles.image_bottom} />
           <Image style={Styles.image_bg_bottom} source={require('./src/images/back1.png')} />
-        </View>
+        </Animated.View>
       </Animated.View>
     )
   }
@@ -64,7 +64,8 @@ const App = () => {
     check_status();
     setTimeout(() => {
       setSplash(false);
-    }, 4000);
+    }, 2000);
+
   }, []);
 
   const Stack = createNativeStackNavigator();
@@ -72,7 +73,7 @@ const App = () => {
 
   return (
     splash == true ? <Splashscreen /> : <QueryClientProvider client={queryClient}><NavigationContainer>
-      <Stack.Navigator initialRouteName={check == true ? "TabNav" : "Login"} screenOptions={{ headerShown: false }} key="main">
+      <Stack.Navigator initialRouteName={check == true ? "Appointment" : "Login"} screenOptions={{ headerShown: false }} key="main">
         <Stack.Screen name="Login" component={Login} options={{ animation: "slide_from_bottom" }} />
         <Stack.Screen name="Signup" component={Signup} options={{ animation: "slide_from_bottom" }} />
         <Stack.Screen name="TabNav" component={TabNav} options={{ animation: "slide_from_bottom" }} />

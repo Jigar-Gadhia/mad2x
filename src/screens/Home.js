@@ -1,25 +1,45 @@
-import React, { useState, useEffect } from "react";
-import { ImageBackground, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, StatusBar, ActivityIndicator, Alert } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import { ImageBackground, Image, StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, StatusBar, ActivityIndicator, Alert, Keyboard, ScrollView } from "react-native";
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { Colors } from '../assets/colors/colors.js';
 import { fonts } from '../assets/fonts/fonts.js';
 import Icon from 'react-native-vector-icons/Ionicons.js';
-import axios from "react-native-axios";
 import { Rating } from "react-native-ratings";
-import Animated, { FadeIn, FadeInUp, SlideInRight, SlideOutRight, useSharedValue } from "react-native-reanimated";
-import { useQuery } from "@tanstack/react-query";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import Animated, { FadeIn, FadeInDown, FadeInUp, SlideInRight, SlideOutRight, useSharedValue } from "react-native-reanimated";
 import { useAppState } from '@react-native-community/hooks';
 import notifee, { AndroidImportance, AndroidVisibility } from '@notifee/react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { Dashboard } from "../redux/actions.js";
 
 const Home = (navigation) => {
-    const [url, setUrl] = useState("")
+
     const up = useSharedValue(-160);
     const down = useSharedValue(0);
     const [edit, setEdit] = useState(true);
+    const key = useRef("");
+    const [keyb, setKey] = useState(Keyboard.isVisible());
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(Dashboard());
+        const keyShow = Keyboard.addListener('keyboardDidShow', () => {
+            key.current.focus();
+        })
+
+        const keyHide = Keyboard.addListener('keyboardDidHide', () => {
+            key.current.blur();
+        })
+
+        return () => {
+            keyShow.remove();
+            keyHide.remove();
+        }
+    }, [keyb])
+
+    const api = useSelector((state) => state.result.result)
+    console.log(api.length)
 
     const state = useAppState();
-    console.log("state", state)
 
     const notify = () => {
         notifee.displayNotification({
@@ -43,34 +63,12 @@ const Home = (navigation) => {
 
 
     const [data_doc, setData_doc] = useState("")
-    const [showD, setShowd] = useState(false)
+    const showD = useRef(false).current;
     const [ind, setInd] = useState("");
-    const [doc_name, setDoc] = useState("");
-    const [search, setSearch] = useState(false)
-    const [doclist, setdoclist] = useState([""]);
+    const search = useRef("");
+    const [doclist, setdoclist] = useState("");
 
     const image = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
-
-    const doc_data = async () => {
-        const response = await axios.get("http://staging.webmynehost.com/hospital_demo/services/dashboard.php", {
-            params: {
-                format: "json"
-            }
-        })
-        const img = await AsyncStorage.getItem("image_uri")
-        setUrl(img);
-        setData_doc(response.data.response)
-        return response;
-    }
-
-    console.log(url)
-
-    const GetDoc = () => {
-        const { data, isLoading, error } = useQuery(['doc_get'], doc_data, { refetchOnMount: true, refetchOnReconnect: true });
-        return { data, isLoading, error };
-    }
-
-    const { data, isLoading, error } = GetDoc();
 
     const Details = () => {
         return (
@@ -80,17 +78,17 @@ const Home = (navigation) => {
                 backgroundColor: Colors.white,
             }}>
                 <View style={Styles.bg}>
-                    <TouchableOpacity style={Styles.detail_back} onPress={() => toggleD()}>
+                    <TouchableOpacity style={Styles.detail_back} onPress={() => closeD()}>
                         <Icon name="arrow-back" size={32} color={Colors.white} />
                     </TouchableOpacity>
                     <View style={Styles.profile_bg}>
                         <View style={Styles.bg_image}>
-                            <ImageBackground source={{ uri: url }} resizeMode='contain' style={{ height: hp("15%") }} borderRadius={16}>
+                            <ImageBackground source={{ uri: image }} resizeMode='contain' style={{ height: hp("15%") }} borderRadius={16}>
                                 <View style={Styles.profile_indicator}></View>
                             </ImageBackground>
                         </View>
-                        <Text style={Styles.doc_text_sp}>{data_doc[ind].SpecialityName != "" ? data_doc[ind].SpecialityName : "None"}</Text>
-                        <Text style={Styles.doc_text_title}>{data_doc[ind].DoctorName}</Text>
+                        <Text style={Styles.doc_text_sp}>{api[ind].SpecialityName != "" ? api[ind].SpecialityName : "None"}</Text>
+                        <Text style={Styles.doc_text_title}>{api[ind].DoctorName}</Text>
                         <View style={Styles.doc_icon_view}>
                             <TouchableOpacity style={Styles.doc_icon_button}>
                                 <Image style={[Styles.doc_icons, { width: wp("5%") }]} source={require('../images/message.png')} />
@@ -105,7 +103,7 @@ const Home = (navigation) => {
                                 <Image style={[Styles.doc_icons, { width: wp("4%") }]} source={require('../images/location.png')} />
                             </TouchableOpacity>
                         </View>
-                        <Text style={Styles.hos_text}>{data_doc[ind].hospital}</Text>
+                        <Text style={Styles.hos_text}>{api[ind].hospital}</Text>
                         <Rating
                             style={{ justifyContent: "flex-end", marginRight: wp("48%"), marginTop: hp("1%") }}
                             type="star"
@@ -122,8 +120,8 @@ const Home = (navigation) => {
                         </View>
                         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
                             <Text style={Styles.doc_exp_data}>NA</Text>
-                            <Text style={Styles.doc_exp_data}>{data_doc[ind].Experience}</Text>
-                            <Text style={Styles.doc_exp_data}>{data_doc[ind].Reviews}</Text>
+                            <Text style={Styles.doc_exp_data}>{api[ind].Experience}</Text>
+                            <Text style={Styles.doc_exp_data}>{api[ind].Reviews}</Text>
                         </View>
                         <View style={Styles.book_app_view}>
                             <TouchableOpacity style={Styles.book_app_btn} onPress={() => navigation.navigation.navigate("Appointment")}>
@@ -136,9 +134,13 @@ const Home = (navigation) => {
         )
     }
 
-    const toggleD = (index) => {
-        setShowd(!showD)
+    const closeD = () => {
+        showD.current = false
+    }
+
+    const openD = (index) => {
         setInd(index)
+        showD.current = true
     }
 
     const [doc, setdoc] = useState(false)
@@ -170,35 +172,8 @@ const Home = (navigation) => {
     }
     ];
 
-    const dataDoc = [{
-        path: require('../images/doc1.png'),
-        doc_occ: "Cardiologist",
-        name: "Dr. Alan C Braverman"
-    },
-    {
-        path: require('../images/doc2.png'),
-        doc_occ: "Urologist",
-        name: "Dr. Erica M Linkan"
-    },
-    {
-        path: require('../images/doc1.png'),
-        doc_occ: "Neurologist",
-        name: "Dr. David B Hopper"
-    },
-    {
-        path: require('../images/doc2.png'),
-        doc_occ: "Pediatrician",
-        name: "Dr. John Doe"
-    },
-    {
-        path: require('../images/doc1.png'),
-        doc_occ: "Cardiologist",
-        name: "Dr. Alan C Braverman"
-    }
-    ];
-
     const renderCat = ({ item, index }) => (
-        <Animated.View entering={FadeIn.delay(100 * index)}>
+        <Animated.View entering={FadeIn.delay(200 * index)}>
             <TouchableOpacity style={[Styles.doc_banner_view, {
                 backgroundColor: item.color,
             }]}>
@@ -208,13 +183,34 @@ const Home = (navigation) => {
         </Animated.View>
     );
 
+    const renderSearch = ({ item, index }) => {
+        return (
+            item.DoctorName != "" && item.SpecialityName != "" ?
+                <Animated.View entering={FadeInUp.delay(200 * index)}>
+                    <TouchableOpacity style={Styles.doc_banner} onPress={() => openD(index)}>
+                        <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
+                            <View style={Styles.doc_indicator}></View>
+                        </ImageBackground>
+                        <View>
+                            <Text style={Styles.doc_banner_header}>{item.SpecialityName}</Text>
+                            <Text style={Styles.doc_banner_text}>{item.DoctorName}</Text>
+                        </View>
+                        <View>
+                            <Icon name="ellipse" size={10} color={Colors.options} style={{ marginVertical: hp("1%") }} />
+                            <Icon name="ellipse" size={10} color={Colors.options} style={{ marginBottom: hp("1%") }} />
+                        </View>
+                    </TouchableOpacity>
+                </Animated.View> : null
+        )
+    }
+
     const renderDoc = ({ item, index }) => {
         return (
             <View>
                 {doc == false ? (
                     <View>
-                        {index < 3 && (<Animated.View entering={FadeInUp.delay(100 * index)}>
-                            <TouchableOpacity style={[Styles.doc_banner, index == 2 ? { marginBottom: hp("4%") } : null]} onPress={() => toggleD(index)}>
+                        {index < 3 && (<Animated.View entering={FadeInUp.delay(200 * index)}>
+                            <TouchableOpacity style={[Styles.doc_banner, index == 2 ? { marginBottom: hp("4%") } : null]} onPress={() => openD(index)}>
                                 <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
                                     <View style={Styles.doc_indicator}></View>
                                 </ImageBackground>
@@ -229,8 +225,8 @@ const Home = (navigation) => {
                             </TouchableOpacity></Animated.View>
                         )}
                     </View>
-                ) : (index < 10 && <Animated.View entering={FadeInUp.delay(100 * index)}>
-                    <TouchableOpacity style={Styles.doc_banner} onPress={() => toggleD(index)}>
+                ) : (index < 10 && <Animated.View entering={FadeInUp.delay(200 * index)}>
+                    <TouchableOpacity style={Styles.doc_banner} onPress={() => openD(index)}>
                         <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
                             <View style={Styles.doc_indicator}></View>
                         </ImageBackground>
@@ -249,21 +245,22 @@ const Home = (navigation) => {
     };
 
     const searchRes = (text) => {
-        const result = data_doc.filter((item) => {
-            item.DoctorName.includes(text)
-            setSearch(true)
+        const result = api.filter((item) => {
+            const doctorName = item.DoctorName.toLowerCase(); // Convert to lowercase for case-insensitive matching
+            const searchText = text.toLowerCase(); // Convert search text to lowercase
+            return doctorName.includes(searchText); // Check if doctorName includes the search text
         }
         );
-        setdoclist(result);
+        setdoclist(result)
+        console.log("search: ", result)
         if (text === "") {
-            setdoclist([]);
-            setSearch(false)
+            setdoclist("");
         }
     };
 
     return (
-        <Animated.View entering={FadeIn} style={Styles.container}>
-            {showD && <Details />}
+        <Animated.View entering={FadeInDown} style={Styles.container}>
+            {showD == true && <Details />}
             <StatusBar backgroundColor={showD == true ? Colors.blue : Colors.white} barStyle={showD == true ? "light-content" : "dark-content"} />
             <View style={{ height: hp("91.4%"), marginLeft: wp("3%") }}>
                 <View style={{ flex: 1 }}>
@@ -279,19 +276,13 @@ const Home = (navigation) => {
                     <View style={Styles.searchbar}>
                         <View style={Styles.searchbar_view}>
                             <TextInput placeholder="Search e.g. Dr Louis"
+                                ref={key}
+                                onTouchStart={() => keyb == false ? key.current.blur() : null}
                                 placeholderTextColor={Colors.search_place}
                                 style={Styles.search_input}
                                 editable={edit}
-                                onTouchStart={() => {
-                                    Alert.alert("Desclaimer", "Search feature is in development", [
-                                        { text: "Ok", onPress: () => setEdit(true) }
-                                    ])
-                                    setEdit(false)
-                                }} />
-                            <TouchableOpacity style={Styles.search_button}
-                                onPress={() => {
-                                    console.log(doc_name)
-                                }}>
+                                onChangeText={(text) => searchRes(text)} />
+                            <TouchableOpacity style={Styles.search_button}>
                                 <Icon name="search" size={25} color={Colors.white}></Icon>
                             </TouchableOpacity>
                         </View>
@@ -317,31 +308,34 @@ const Home = (navigation) => {
                         <View style={Styles.doc_view}>
                             <Text style={Styles.doc_header}>Top Doctors</Text>
                             <TouchableOpacity onPress={() => setdoc(!doc)}>
-                                {isLoading ? <ActivityIndicator size={"small"} color={Colors.date} /> : <Text style={Styles.doc_text}>{doc == false ? (doclist != "" ? null : "See All") : "See less"}</Text>}
+                                {api == "" ? <ActivityIndicator size={"small"} color={Colors.date} /> : <Text style={Styles.doc_text}>{doc == false ? (doclist != "" ? null : "See All") : "See less"}</Text>}
                             </TouchableOpacity>
                         </View>
                         <View style={Styles.doc_details}>
-                            {isLoading ?
+                            {api == "" ?
                                 <View><ActivityIndicator color={Colors.date} size={"large"}
                                     style={{
                                         marginTop: hp("15%"),
                                     }} />
                                     <Text style={{ alignSelf: "center", fontFamily: fonts.semibold, fontSize: 18, marginTop: hp("1%"), marginLeft: wp("3%") }}>Loading...</Text>
-                                </View> :
+                                </View> : api.length == 0 ? <View><Text style={{ color: "black" }}>Something is wrong !</Text></View> :
 
-                                error ? <Text style={{
-                                    fontFamily: fonts.bold,
-                                    alignSelf: "center",
-                                    fontSize: 20,
-                                    marginTop: hp("15%")
-                                }}>Somthing went wrong!</Text> : <View
-                                    style={{
-                                        backgroundColor: Colors.white,
-                                    }}>
-                                    <FlatList
-                                        data={data_doc}
-                                        renderItem={renderDoc}
-                                        initialNumToRender={doc == false ? 10 : 5} /></View>}
+                                    <View
+                                        style={{
+                                            backgroundColor: Colors.white,
+                                        }}>
+                                        {doclist == "" ?
+                                            <FlatList
+                                                data={api}
+                                                renderItem={renderDoc}
+                                                initialNumToRender={doc == false ? 10 : 5} /> :
+                                            <View style={{ height: hp("41.5%") }}>
+                                                <ScrollView><FlatList data={doclist}
+                                                    renderItem={renderSearch}
+                                                    scrollEnabled={false}
+                                                />
+                                                </ScrollView>
+                                            </View>}</View>}
                         </View>
                     </Animated.View>
                 </View>

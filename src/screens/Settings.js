@@ -1,78 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, Image, FlatList, StatusBar } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { Colors } from '../assets/colors/colors.js';
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons.js';
 import { fonts } from '../assets/fonts/fonts.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Animated, { FadeIn, FadeInRight, FadeOutRight } from 'react-native-reanimated';
-
-const data = [
-    {
-        id: 0,
-        path: require('../images/General.png'),
-        text: "General"
-    },
-    {
-        id: 1,
-        path: require('../images/Notifications.png'),
-        text: "Notifications"
-    },
-    {
-        id: 2,
-        path: require('../images/Medical_Details.png'),
-        text: "Medical Details"
-    },
-    {
-        id: 3,
-        path: require('../images/Doctor_Details.png'),
-        text: "Doctor Details"
-    },
-    {
-        id: 4,
-        path: require('../images/Payments.png'),
-        text: "Payments"
-    },
-    {
-        id: 5,
-        path: require('../images/Profile.png'),
-        text: "Profile"
-    },
-    {
-        id: 6,
-        path: require('../images/Privacy.png'),
-        text: "Privacy"
-    },
-    {
-        id: 7,
-        path: require('../images/logout.png'),
-        text: "Logout"
-    },
-
-];
+import Animated, { FadeIn } from 'react-native-reanimated';
+import { SettingsData } from '../data/SettingsData.js';
 
 const Settings = (navigation) => {
     const [url, setUrl] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-    const [change, setChange] = useState(false)
-
 
     useEffect(() => {
         getDrawerStatusFromState()
-        console.log(url)
     }, [])
-
-    console.log(navigation)
-
 
     const getDrawerStatusFromState = async () => {
         const path = await AsyncStorage.getItem('image_uri')
         setUrl(path)
-        console.log("string", url)
     }
 
     const renderData = ({ item, index }) => {
-        return (<Animated.View style={{width: wp("80%"), borderRadius: 20}} entering={FadeIn.delay(50 * index)}>
-            <TouchableOpacity style={[Styles.data_button, item.text == "Profile" ? { zIndex: 1 } : null]} onPress={() => item.text == "Profile" ? toggleChange() : null}>
+        return (<Animated.View style={{ width: wp("80%"), borderRadius: 20 }} entering={FadeIn.delay(50 * index)}>
+            <TouchableOpacity
+                style={Styles.data_button}
+                onPress={() => item.text == "Change Password" ? navigation.navigation.navigate("Reset") : null}>
                 <View style={Styles.image_view}>
                     <Image style={[Styles.image, { height: item.id == 3 ? hp("3.5%") : hp("2.2%"), marginRight: item.id == 3 ? wp("0.8%") : wp("0%") }]} source={item.path} />
                 </View>
@@ -80,10 +32,6 @@ const Settings = (navigation) => {
             </TouchableOpacity>
         </Animated.View>
         )
-    }
-
-    const toggleChange = () => {
-        setChange(!change)
     }
 
     return (
@@ -100,22 +48,8 @@ const Settings = (navigation) => {
                     <Image style={Styles.header_image} source={{ uri: url }} />
                     <Text style={Styles.header_text}>John Doe</Text>
                 </View>
-                {change == true && <Animated.View entering={FadeInRight} exiting={FadeOutRight} style={Styles.profile_view}>
-                    <TouchableOpacity style={Styles.profile_button} onPress={() => toggleChange()}>
-                        <View style={Styles.change_view}>
-                            <Icon name="arrow-back" size={26} color={Colors.white} />
-                        </View>
-                        <Text style={Styles.image_text}>Profile</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ flexDirection: "row", margin: 15, alignItems: "center", marginTop: hp("3%") }} onPress={() => navigation.navigation.navigate("Reset")}>
-                        <View style={{ backgroundColor: Colors.lite_blue, borderRadius: 10 }}>
-                            <Image style={{ height: hp("4%"), width: wp("9%"), resizeMode: "contain", margin: 8 }} source={require('../images/lock.png')} />
-                        </View>
-                        <Text style={{ fontSize: 15, fontFamily: fonts.semibold, margin: 15 }}>Change password</Text>
-                    </TouchableOpacity>
-                </Animated.View>}
                 <View style={Styles.settings_bg}>
-                    <Animated.FlatList entering={FadeIn} contentContainerStyle={{ marginVertical: hp("4%") }} data={data} renderItem={renderData} />
+                    <Animated.FlatList entering={FadeIn} contentContainerStyle={{ marginVertical: hp("4%") }} data={SettingsData} renderItem={renderData} />
                 </View>
             </View>
         </View>

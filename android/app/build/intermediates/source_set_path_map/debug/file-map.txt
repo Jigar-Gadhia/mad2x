@@ -29,21 +29,23 @@ com.mad2x.app-transition-1.2.0-27 C:\Users\jayga\.gradle\caches\transforms-3\e32
 com.mad2x.app-sqlite-2.3.0-28 C:\Users\jayga\.gradle\caches\transforms-3\ee029fe814f10448264743b6780301c8\transformed\sqlite-2.3.0\res
 com.mad2x.app-jetified-drawee-2.6.0-29 C:\Users\jayga\.gradle\caches\transforms-3\f4a65ce6ec58fd6d97bcb819934dfdd7\transformed\jetified-drawee-2.6.0\res
 com.mad2x.app-coordinatorlayout-1.1.0-30 C:\Users\jayga\.gradle\caches\transforms-3\ff8cf5244b1452ffe5becfa7e824ee68\transformed\coordinatorlayout-1.1.0\res
-com.mad2x.app-resValues-31 F:\My project\mad2x\android\app\build\generated\res\resValues\debug
-com.mad2x.app-rs-32 F:\My project\mad2x\android\app\build\generated\res\rs\debug
-com.mad2x.app-mergeDebugResources-33 F:\My project\mad2x\android\app\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
-com.mad2x.app-mergeDebugResources-34 F:\My project\mad2x\android\app\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
-com.mad2x.app-merged_res-35 F:\My project\mad2x\android\app\build\intermediates\merged_res\debug
-com.mad2x.app-debug-36 F:\My project\mad2x\android\app\src\debug\res
-com.mad2x.app-main-37 F:\My project\mad2x\android\app\src\main\res
-com.mad2x.app-packaged_res-38 F:\My project\mad2x\node_modules\@notifee\react-native\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-39 F:\My project\mad2x\node_modules\@react-native-async-storage\async-storage\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-40 F:\My project\mad2x\node_modules\react-native-flipper-performance-plugin\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-41 F:\My project\mad2x\node_modules\react-native-flipper\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-42 F:\My project\mad2x\node_modules\react-native-gesture-handler\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-43 F:\My project\mad2x\node_modules\react-native-image-picker\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-44 F:\My project\mad2x\node_modules\react-native-push-notification\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-45 F:\My project\mad2x\node_modules\react-native-safe-area-context\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-46 F:\My project\mad2x\node_modules\react-native-screens\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-47 F:\My project\mad2x\node_modules\react-native-splash-screen\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-48 F:\My project\mad2x\node_modules\react-native-vector-icons\android\build\intermediates\packaged_res\debug
+com.mad2x.app-resValues-31 F:\new project\mad2x\android\app\build\generated\res\resValues\debug
+com.mad2x.app-rs-32 F:\new project\mad2x\android\app\build\generated\res\rs\debug
+com.mad2x.app-mergeDebugResources-33 F:\new project\mad2x\android\app\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.mad2x.app-mergeDebugResources-34 F:\new project\mad2x\android\app\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.mad2x.app-merged_res-35 F:\new project\mad2x\android\app\build\intermediates\merged_res\debug
+com.mad2x.app-debug-36 F:\new project\mad2x\android\app\src\debug\res
+com.mad2x.app-main-37 F:\new project\mad2x\android\app\src\main\res
+com.mad2x.app-packaged_res-38 F:\new project\mad2x\node_modules\@notifee\react-native\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-39 F:\new project\mad2x\node_modules\@react-native-async-storage\async-storage\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-40 F:\new project\mad2x\node_modules\react-native-flipper-performance-plugin\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-41 F:\new project\mad2x\node_modules\react-native-flipper\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-42 F:\new project\mad2x\node_modules\react-native-fs\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-43 F:\new project\mad2x\node_modules\react-native-gesture-handler\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-44 F:\new project\mad2x\node_modules\react-native-image-picker\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-45 F:\new project\mad2x\node_modules\react-native-push-notification\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-46 F:\new project\mad2x\node_modules\react-native-safe-area-context\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-47 F:\new project\mad2x\node_modules\react-native-screens\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-48 F:\new project\mad2x\node_modules\react-native-splash-screen\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-49 F:\new project\mad2x\node_modules\react-native-svg\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-50 F:\new project\mad2x\node_modules\react-native-vector-icons\android\build\intermediates\packaged_res\debug

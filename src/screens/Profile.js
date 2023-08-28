@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, StatusBar, ActivityIndicator, useColorScheme } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, StatusBar, ActivityIndicator } from "react-native";
 import { Colors } from "../assets/colors/colors.js";
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { fonts } from "../assets/fonts/fonts";
 import Icon from 'react-native-vector-icons/Ionicons'
 import { CommonActions } from "@react-navigation/native";
-import Animated, { FadeIn, SlideInDown, SlideOutDown } from "react-native-reanimated";
+import Animated, { FadeIn } from "react-native-reanimated";
 import axios from 'react-native-axios';
 import { pdata, options } from "../data/profile_data.js";
 import { useQuery } from '@tanstack/react-query'
@@ -76,7 +76,7 @@ const Profile = (navigation) => {
 
     const get_email = async () => {
         if (data) {
-            await AsyncStorage.setItem('email_data', JSON.stringify(data))
+            await AsyncStorage.setItem('email_data', JSON.stringify(data.email))
         }
         else {
             await AsyncStorage.setItem('email_error', JSON.stringify(error))
@@ -85,7 +85,7 @@ const Profile = (navigation) => {
         setPass(pass)
         const name = await AsyncStorage.getItem('dataname')
         setUname(name)
-        console.log(uname)
+        console.log("uname: ", uname)
     }
 
     const ApiLogout = async () => {
@@ -178,7 +178,7 @@ const Profile = (navigation) => {
                                     marginHorizontal: wp("2%"),
                                     marginBottom: hp("1.2%")
                                 }}>
-                                    <Image style={Styles.profile_image} source={{ uri: url == "" ? default_image : url }} />
+                                    <Image style={Styles.profile_image} source={{ uri: url == "" || url == undefined ? default_image : url }} />
                                     <TouchableOpacity style={Styles.profile_btn} onPress={() => navigation.navigation.navigate("Edit_Profile")}>
                                         <Text style={Styles.profile_btn_text}>My Profile</Text>
                                     </TouchableOpacity>

@@ -4,14 +4,17 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { Colors } from "../assets/colors/colors.js";
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { fonts } from "../assets/fonts/fonts";
+import { CommonActions } from "@react-navigation/native";
 
 const Success = (navigation) => {
 
     useEffect(() => {
         setTimeout(() => {
-            navigation.navigation.navigate("Login")
+            navigation.navigation.dispatch(CommonActions.reset({
+                routes: [{ name: "Login" }]
+            }))
             setShow(false)
-        }, 2000)
+        }, 3000)
     })
 
     const [show, setShow] = useState(true)

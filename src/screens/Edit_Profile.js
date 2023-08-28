@@ -10,45 +10,18 @@ import axios from 'react-native-axios';
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import { useQuery } from '@tanstack/react-query'
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Buffer } from 'buffer'
-
-const array = [
-    {
-        name: "Name",
-        placeholder: "John Doe",
-        value: ""
-    },
-    {
-        name: "Email",
-        placeholder: "johndoe@mail.com",
-        value: ""/*userdata.email*/
-    },
-    {
-        name: "Mobile Number",
-        placeholder: "+88 012 575 3365",
-        value: ""/*userdata.mobile*/
-    },
-    {
-        name: "Age",
-        placeholder: "35 Years",
-        value: ""/*userdata.age*/
-    },
-    {
-        name: "Address",
-        placeholder: "Lorem ipsum dolor sit amet",
-        value: ""/*userdata.address*/
-    },
-
-]
+import { getProfile } from "../data/getProfile.js";
+import { InputForm } from "../components/InputForm.js";
 
 const Profile_Edit = (navigation) => {
 
     useEffect(() => {
         static_image();
-        ProfileData[0].value = data.name
-        ProfileData[2].value = data.mobile
-        ProfileData[3].value = data.age
-        ProfileData[4].value = data.address
+        array[0].value = data.name
+        array[1].value = data.email
+        array[2].value = data.mobile
+        array[3].value = data.age
+        array[4].value = data.address
     }, [])
 
     const [id, setId] = useState("");
@@ -63,7 +36,6 @@ const Profile_Edit = (navigation) => {
                 profileId: userid
             }
         })
-        console.log(response)
         return response.data.ResponseData;
     };
 
@@ -73,10 +45,9 @@ const Profile_Edit = (navigation) => {
     };
 
     const { data, status, isFetched, isLoading, error } = GetProfile();
-    console.log("fetching", data)
 
-    const [ProfileData, setPost] = useState(array);
-    const newData = Object.assign(array, ProfileData)
+    const [array, setArray] = useState(getProfile);
+    const newData = [...array]
     const default_image = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
     const [url, setUrl] = useState(default_image);
     const [uname, setUname] = useState("");
@@ -91,19 +62,17 @@ const Profile_Edit = (navigation) => {
     const ApiPost = () => {
 
         var formdata = new FormData();
-        // console.log("uname", ProfileData[0].value, ProfileData[2].value, ProfileData[3].value, ProfileData[4].value)
         formdata.append("profileId", id);
-        formdata.append("name", ProfileData[0].value.toString());
-        formdata.append("age", ProfileData[2].value.toString());
-        formdata.append("address", ProfileData[4].value.toString());
+        formdata.append("name", array[0].value.toString());
+        formdata.append("age", array[2].value.toString());
+        formdata.append("address", array[4].value.toString());
         formdata.append("image(base64)", url)
-        formdata.append("mobile", ProfileData[3].value.toString());
+        formdata.append("mobile", array[3].value.toString());
 
         axios.post('http://staging.webmynehost.com/hospital_demo/services/editProfile.php', formdata, { headers: { 'content-type': 'multipart/form-data' } })
 
             .then(function (response) {
                 console.log("postApi", response);
-                // console.log("post", post)
             })
             .catch(function (error) {
                 console.log(error);
@@ -111,19 +80,18 @@ const Profile_Edit = (navigation) => {
     }
 
     const toggleSave = () => {
-        setPost(newData)
-        setUname(ProfileData[0].value)
-        setMobile(ProfileData[2].value)
-        setAge(ProfileData[3].value)
-        SetAddress(ProfileData[4].value)
+        // setPost(newData)
+        setUname(array[0].value)
+        setMobile(array[2].value)
+        setAge(array[3].value)
+        SetAddress(array[4].value)
     }
 
     const toggleAbort = () => {
-        ProfileData[0].value = data.name
-        ProfileData[2].value = data.mobile
-        ProfileData[3].value = data.age
-        ProfileData[4].value = data.address
-        console.log("array updated: ", ProfileData)
+        array[0].value = data.name
+        array[2].value = data.mobile
+        array[3].value = data.age
+        array[4].value = data.address
         navigation.navigation.dispatch(CommonActions.reset({
             routes: [{ name: "Edit_Profile" }]
         }))
@@ -139,15 +107,6 @@ const Profile_Edit = (navigation) => {
             await AsyncStorage.setItem('image_uri', item.uri)
             setUrl(item.uri)
         })
-        navigation.navigation, dispatch(CommonActions.reset(
-            {
-                routes: [
-                    {
-                        name: "Edit_Profile"
-                    },
-                ]
-            }
-        ))
     }
 
     const load_camera = async () => {
@@ -179,23 +138,6 @@ const Profile_Edit = (navigation) => {
 
     }
 
-    const renderProfile = ({ item, index }) => {
-        return (
-            <View style={Styles.profile_view} key={index}>
-                <Text style={Styles.profile_text} key={index}>{item.name}</Text>
-                <TextInput style={[Styles.input, item.name == "Email" && edit == true ? { color: Colors.grey } : null, edit == true ? { elevation: 5 } : null]}
-                    placeholder={item.placeholder}
-                    value={item.name == "Email" ? data.email : null}
-                    defaultValue={item.value}
-                    placeholderTextColor={Colors.blue}
-                    editable={item.name == "Email" ? false : edit}
-                    onChangeText={(text) => {
-                        newData[index].value = text
-                    }} />
-            </View>
-        )
-    }
-
     const toggleModal = () => {
         if (edit == true) {
             setVisible(!visible);
@@ -208,9 +150,6 @@ const Profile_Edit = (navigation) => {
     const toggleEdit = () => {
         setEdit(!edit)
     }
-
-    // reader.readAsDataURL(default_image)
-
 
     return (
         isLoading ? <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}><ActivityIndicator size={"large"} color={Colors.date} /></View> :
@@ -252,8 +191,16 @@ const Profile_Edit = (navigation) => {
                                     </TouchableOpacity>
                                 </ImageBackground>
                             </View>
-                            <View style={{ marginBottom: hp("3%") }}>
-                                <FlatList data={ProfileData} renderItem={renderProfile} scrollEnabled={false} />
+                            <View style={{ marginBottom: hp("3%"), alignItems: "center" }}>
+                                <InputForm
+                                    TouchEvent={(index) => console.log(index)}
+                                    data={array}
+                                    TextSpace={hp("1%")}
+                                    TextChangeEvent={(text, index) => {
+                                        newData[index].value = text
+                                    }} 
+                                    editable={edit}
+                                    />
                             </View>
                         </View>
                     </View>

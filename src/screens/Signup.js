@@ -5,8 +5,11 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { Colors } from '../assets/colors/colors.js'
 import { fonts } from '../assets/fonts/fonts.js';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {user_signup} from '../services/userServices.js';
- 
+import { user_signup } from '../services/userServices.js';
+import { InputForm } from "../components/InputForm.js";
+import { SignupData } from "../data/SignupData.js";
+import { SignupValidations } from "../validations/SignupValidations.js";
+
 const Signup = (navigation) => {
 
     const [email, setEmail] = useState("");
@@ -17,22 +20,16 @@ const Signup = (navigation) => {
     const [userErr, setUserErr] = useState("");
     const [passErr, setPassErr] = useState("");
     const [cpassErr, setCpassErr] = useState("");
-    const [secureTextEntry, setSecureTextEntry] = useState(true);
-    const [csecureTextEntry, setCSecureTextEntry] = useState(true);
-    const [loader, setLoader] = useState(true)
-    const [loadErr, setLoaderr] = useState("")
-    const [res, setRes] = useState("")
+    const [loader, setLoader] = useState(false)
+    const [array, setArray] = useState(SignupData)
 
     const strongRegex = new RegExp("^[.]+[@]");
 
     const toggleLoader = () => {
-        setLoader(true)
-        setTimeout(() => {
-            setLoader(false)
-        }, 3000)
+        setLoader(!loader)
     }
 
-    const Validation = async() => {
+    const Validation = async () => {
         { email == "" ? setEmailErr("Email ID is required") : setEmailErr("") }
         { user == "" ? setUserErr("Username is required") : setUserErr("") }
         { pass == "" ? setPassErr("Password is required") : setPassErr("") }
@@ -51,19 +48,12 @@ const Signup = (navigation) => {
             toggleLoader();
             user_signup(user, email, pass, cpass, navigation)
             const res = await AsyncStorage.getItem('signup_res')
-            // console.log(res)
             const err = await AsyncStorage.getItem('signup_error')
-            if(res)
-            {
+            if (res) {
                 toggleLoader();
-            }
-            else if(err)
-            {
-                setLoader(true)
             }
         }
     }
-    // console.log(pass)
 
     return (
         <ScrollView style={styles.container}>
@@ -73,66 +63,28 @@ const Signup = (navigation) => {
                 <View style={styles.signup_bg}>
                     <View style={{ alignSelf: "center", flex: 1, justifyContent: "space-evenly", marginHorizontal: wp("8%"), marginTop: wp("7%") }}>
                         <Text style={styles.signup_header}>SIGN UP</Text>
-                        <View>
-                            <Text style={styles.signup_text}>
-                                Email ID
-                            </Text>
-                            <View style={styles.password}>
-                                <TextInput placeholder="johndoe@gmail.com" style={styles.text_input} placeholderTextColor={Colors.blue} onChangeText={(email) => setEmail(email)}>
-                                </TextInput>
-                                <TouchableOpacity style={styles.icon}>
-                                    {emailErr != "" ? (<Icon name="alert" size={20} color={Colors.red} />) : null}
-                                </TouchableOpacity>
-                            </View>
-                            {emailErr != "" ? (<Text animation={"fadeIn"} useNativeDriver={true} style={styles.val}>{emailErr}</Text>) : null}
-                        </View>
-                        <View>
-                            <Text style={styles.signup_text}>
-                                Username
-                            </Text>
-                            <View style={styles.password}>
-                                <TextInput placeholder="john doe" style={styles.text_input} placeholderTextColor={Colors.blue} onChangeText={(user) => setUser(user)}>
-                                </TextInput>
-                                <TouchableOpacity style={styles.icon}>
-                                    {userErr != "" ? (<Icon name="alert" size={20} color={Colors.red} />) : null}
-                                </TouchableOpacity>
-                            </View>
-                            {userErr != "" ? (<Text style={styles.val}>{userErr}</Text>) : null}
-                        </View>
-                        <View>
-                            <Text style={styles.signup_text}>
-                                Password
-                            </Text>
-                            <View style={styles.password}>
-                                <TextInput placeholder="**********" secureTextEntry={secureTextEntry} style={styles.pass_input} placeholderTextColor={Colors.blue} onChangeText={(pass) => setPass(pass)}>
-                                </TextInput>
-                                <TouchableOpacity style={styles.pass_val} onPress={() => setSecureTextEntry(!secureTextEntry)}>
-                                    <View style={{ flexDirection: "row" }}>
-                                        {secureTextEntry == true ? (<Icon name="eye-off" size={20} color={Colors.grey} style={styles.eye} />) : <Icon name="eye" size={20} color={Colors.grey}></Icon>}
-                                        {passErr != "" ? (<Icon name="alert" size={20} color={Colors.red} />) : null}
-                                    </View>
-
-                                </TouchableOpacity>
-                            </View>
-                            {passErr != "" ? (<Text style={styles.val}>{passErr}</Text>) : null}
-                        </View>
-                        <View>
-                            <Text style={styles.signup_text}>
-                                Confirm Password
-                            </Text>
-                            <View style={styles.password}>
-                                <TextInput placeholder="**********" secureTextEntry={csecureTextEntry} style={styles.pass_input} placeholderTextColor={Colors.blue} onChangeText={(cpass) => setCpass(cpass)}>
-                                </TextInput>
-                                <></>
-                                <TouchableOpacity onPress={() => setCSecureTextEntry(!csecureTextEntry)} style={styles.pass_val}>
-                                    <View style={{ flexDirection: "row" }}>
-                                        {csecureTextEntry == true ? (<Icon name="eye-off" size={20} color={Colors.grey} style={styles.eye} />) : <Icon name="eye" size={20} color={Colors.grey} />}
-                                        {cpassErr != "" ? (<Icon name="alert" size={20} color={Colors.red} style={{ marginRight: wp("1%") }} />) : null}
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                            {cpassErr != "" ? (<Text style={styles.val}>{cpassErr}</Text>) : null}
-                        </View>
+                        <InputForm
+                            data={array}
+                            backColor={Colors.white}
+                            border={1}
+                            borderRadius={30}
+                            TextShift={wp("2.5%")}
+                            TextChangeEvent={(text, index) => {
+                                const updated = [...array]
+                                updated[index].value = text;
+                                setArray(updated);
+                                setEmail(array[0].value)
+                                setUser(array[1].value)
+                                setPass(array[2].value)
+                                setCpass(array[2].value)
+                            }}
+                            PressEvent={(index) => {
+                                const updatedArray = [...array]; // Create a copy of the array state
+                                updatedArray[index].show = !updatedArray[index].show; // Toggle the show property
+                                setArray(updatedArray);
+                            }}
+                            Validation={(index) => SignupValidations({ emailErr, userErr, passErr, cpassErr, index })}
+                        />
                     </View>
                     <View>
                         <TouchableOpacity style={styles.signup_button} onPress={() => Validation()}>
