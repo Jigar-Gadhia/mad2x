@@ -17,7 +17,6 @@ This project is under development. Only Android app is ready for preview, IOS Ap
 1. Appointment Booking
 2. Appointment Reminder
 3. Drawer Navigation
-4. Chat Feature
 
 # Installation
 1. Clone your repository.
