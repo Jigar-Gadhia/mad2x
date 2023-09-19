@@ -4,79 +4,78 @@ import { Colors } from "../assets/colors/colors.js";
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { fonts } from "../assets/fonts/fonts";
 import Icon from 'react-native-vector-icons/Ionicons'
-import { CommonActions } from "@react-navigation/native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import axios from 'react-native-axios';
 import { pdata, options } from "../data/profile_data.js";
-import { useQuery } from '@tanstack/react-query'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import notifee, { AndroidImportance } from '@notifee/react-native';
+import { fetchProfile } from "../redux/actions.js";
+import { useDispatch, useSelector } from "react-redux";
+import NetInfo from '@react-native-community/netinfo';
 
 const Profile = (navigation) => {
 
     const [url, setUrl] = useState("");
     const [uname, setUname] = useState("");
     const [pwd, setPass] = useState("");
+    const [connected, setConnected] = useState("");
     const default_image = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        const unsubscribe = NetInfo.addEventListener((state) => {
+            console.log("state: ", state.isConnected);
+            setConnected(state.isConnected);
+        });
+
+        dispatch(fetchProfile());
         get_email();
         get_image();
+
+        return () => {
+            unsubscribe();
+        };
     }, [])
 
-    const notify = async() => {
-        await notifee.requestPermission();
-    
-        const channelId = await notifee.createChannel({
-          id: "logout",
-          name: "logout Channel",
-          sound: "doorbell",
-          importance: AndroidImportance.HIGH
-        });
-    
-        await notifee.displayNotification({
-          title: 'Authentication',
-          body: 'User logged out successfully',
-          android: {
-            channelId,
-            sound: "doorbell",
-            importance: AndroidImportance.HIGH,
-            pressAction: {
-              id: 'logout'
-            }
-          }
-        });
-      }
+    const data = useSelector((data) => data.data.data)
+    const error = useSelector((data) => data.data.error)
 
-    const get_image = async() => {
+    console.log("error: ", data)
+
+    const notify = async () => {
+        await notifee.requestPermission();
+
+        const channelId = await notifee.createChannel({
+            id: "logout",
+            name: "logout Channel",
+            sound: "doorbell",
+            importance: AndroidImportance.HIGH
+        });
+
+        await notifee.displayNotification({
+            title: 'Authentication',
+            body: 'User logged out successfully',
+            android: {
+                channelId,
+                sound: "doorbell",
+                importance: AndroidImportance.HIGH,
+                pressAction: {
+                    id: 'logout'
+                }
+            }
+        });
+    }
+
+    const get_image = async () => {
         const path = await AsyncStorage.getItem('image_uri')
         setUrl(path)
     }
 
-    const Apidata = async () => {
-        const did = await AsyncStorage.getItem('dataid')
-        const userid = JSON.parse(did);
-        const username = await AsyncStorage.getItem('dataname')
-        const response = await axios.get("http://staging.webmynehost.com/hospital_demo/services/getProfile.php", {
-            params: {
-                profileId: userid
-            }
-        })
-        console.log(response)
-        return response.data.ResponseData;
-    };
-
-    const GetProfile = () => {
-        const { data, error, status, isFetched, isLoading } = useQuery(['data_profile'], Apidata, { refetchOnMount: true, refetchOnReconnect: true });
-        return { data, error, status, isFetched, isLoading };
-    };
-
-    const { data, status, isFetched, isLoading, error } = GetProfile();
     console.log("fetching", data)
 
     const get_email = async () => {
-        if (data) {
-            await AsyncStorage.setItem('email_data', JSON.stringify(data.email))
+        if (data !== "") {
+            await AsyncStorage.setItem('email_data', data.email)
         }
         else {
             await AsyncStorage.setItem('email_error', JSON.stringify(error))
@@ -88,7 +87,7 @@ const Profile = (navigation) => {
         console.log("uname: ", uname)
     }
 
-    const ApiLogout = async () => {
+    const ApiLogout = async (uname, pwd) => {
         var formdata = new FormData();
         formdata.append("email", uname);
         formdata.append("password", pwd);
@@ -136,31 +135,36 @@ const Profile = (navigation) => {
     }
 
     return (
-        isLoading ? <Animated.View entering={FadeIn} style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        !data ? <Animated.View entering={FadeIn} style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <ActivityIndicator size={"large"} color={Colors.date} />
-        </Animated.View> : error || isFetched == false ? <Animated.View entering={FadeIn} style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text style={{fontSize: 20, color: Colors.black}}>Something went
-            <Text style={{color: Colors.red}}> wrong</Text>, please
-            <Text style={{color: Colors.red}}> re-login !</Text></Text>
-            <TouchableOpacity style={{borderRadius: 10, backgroundColor: Colors.date, marginTop: hp("3%")}} onPress={() => navigation.navigation.dispatch(CommonActions.reset({ routes: [{ name: "Login" }]}))}>
-                <Text style={{marginHorizontal: wp("7%"), marginVertical: hp("1.5%"),  fontSize: 20, color: Colors.white}}>Login</Text>
+        </Animated.View> : data == "" ? <Animated.View entering={FadeIn} style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <Text style={{ fontSize: 20, color: Colors.black }}>Something went
+                <Text style={{ color: Colors.red }}> wrong</Text>, please
+                <Text style={{ color: Colors.red }}> re-login !</Text></Text>
+            <TouchableOpacity style={{ borderRadius: 10, backgroundColor: Colors.date, marginTop: hp("3%") }} onPress={() => navigation.navigation.dispatch(CommonActions.reset({ routes: [{ name: "Login" }] }))}>
+                <Text style={{ marginHorizontal: wp("7%"), marginVertical: hp("1.5%"), fontSize: 20, color: Colors.white }}>Login</Text>
             </TouchableOpacity>
-        </Animated.View> : 
+        </Animated.View> :
             <View>
                 <StatusBar backgroundColor={Colors.blue} barStyle={"light-content"} />
                 <View style={Styles.container}>
                     <View>
                         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                            <TouchableOpacity style={Styles.back} onPress={() => navigation.navigation.dispatch(
-                                CommonActions.reset({
-                                    index: 0,
-                                    routes: [{ name: 'Settings' }],
-                                })
-                            )}>
+                            <TouchableOpacity accessibilityLabel="Back button"
+                                accessibilityHint="Tap to go the homescreen"
+                                style={Styles.back}
+                                onPress={() => navigation.navigation.dispatch(
+                                    CommonActions.reset({
+                                        index: 0,
+                                        routes: [{ name: 'Settings' }],
+                                    })
+                                )}>
                                 <Icon name="arrow-back" size={30} color={Colors.white} />
                             </TouchableOpacity>
-                            <TouchableOpacity style={Styles.back} onPress={() => {notify();
-                                ApiLogout();}}>
+                            <TouchableOpacity accessibilityLabel="Logout button" accessibilityHint="Tap to logout" style={Styles.back} onPress={() => {
+                                notify();
+                                ApiLogout(uname, pwd);
+                            }}>
                                 <Icon name="power" size={27} color={Colors.white} />
                             </TouchableOpacity>
                         </View>
@@ -178,15 +182,16 @@ const Profile = (navigation) => {
                                     marginHorizontal: wp("2%"),
                                     marginBottom: hp("1.2%")
                                 }}>
-                                    <Image style={Styles.profile_image} source={{ uri: url == "" || url == undefined ? default_image : url }} />
+                                    <Image accessibilityLabel="Profile Picture" style={Styles.profile_image} source={{ uri: url == "" || url == undefined ? default_image : url }} />
                                     <TouchableOpacity style={Styles.profile_btn} onPress={() => navigation.navigation.navigate("Edit_Profile")}>
-                                        <Text style={Styles.profile_btn_text}>My Profile</Text>
+                                        <Text accessibilityLabel="Profile button" style={Styles.profile_btn_text}>My Profile</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
                             <View style={Styles.profile_text_view}>
-                                <Text style={Styles.profile_header_text}>{data.email}</Text>
-                                <Text style={Styles.profile_text_main}>33 Years{'\n'}British Colombia, CA</Text>
+                                <Text accessibilityLabel="Email ID" style={Styles.profile_header_text}>{data.email}</Text>
+                                <Text accessibilityLabel="Age" style={Styles.profile_text_main}>{data.age} Years</Text>
+                                <Text accessibilityLabel="Address" style={Styles.profile_text_main}>{data.address}</Text>
                             </View>
                         </Animated.View>
                         <View style={{ backgroundColor: Colors.white }}>

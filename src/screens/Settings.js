@@ -24,7 +24,7 @@ const Settings = (navigation) => {
         return (<Animated.View style={{ width: wp("80%"), borderRadius: 20 }} entering={FadeIn.delay(50 * index)}>
             <TouchableOpacity
                 style={Styles.data_button}
-                onPress={() => item.text == "Change Password" ? navigation.navigation.navigate("Reset") : null}>
+                >
                 <View style={Styles.image_view}>
                     <Image style={[Styles.image, { height: item.id == 3 ? hp("3.5%") : hp("2.2%"), marginRight: item.id == 3 ? wp("0.8%") : wp("0%") }]} source={item.path} />
                 </View>

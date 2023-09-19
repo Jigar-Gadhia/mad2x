@@ -8,14 +8,17 @@ import { CommonActions } from "@react-navigation/native";
 import Modal from 'react-native-modal';
 import axios from 'react-native-axios';
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
-import { useQuery } from '@tanstack/react-query'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getProfile } from "../data/getProfile.js";
 import { InputForm } from "../components/InputForm.js";
+import { fetchProfile } from "../redux/actions.js";
+import { useDispatch, useSelector } from "react-redux";
 
 const Profile_Edit = (navigation) => {
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(fetchProfile());
         static_image();
         array[0].value = data.name
         array[1].value = data.email
@@ -25,6 +28,7 @@ const Profile_Edit = (navigation) => {
     }, [])
 
     const [id, setId] = useState("");
+    const data = useSelector((data) => data.data.data)
 
     const Apidata = async () => {
         const did = await AsyncStorage.getItem('dataid')
@@ -39,12 +43,12 @@ const Profile_Edit = (navigation) => {
         return response.data.ResponseData;
     };
 
-    const GetProfile = () => {
-        const { data, error, status, isFetched, isLoading } = useQuery(['data_profile'], Apidata, { refetchOnMount: true, refetchOnReconnect: true });
-        return { data, error, status, isFetched, isLoading };
-    };
+    // const GetProfile = () => {
+    //     const { data, error, status, isFetched, isLoading } = useQuery(['data_profile'], Apidata, { refetchOnMount: true, refetchOnReconnect: true });
+    //     return { data, error, status, isFetched, isLoading };
+    // };
 
-    const { data, status, isFetched, isLoading, error } = GetProfile();
+    // const { data, status, isFetched, isLoading, error } = GetProfile();
 
     const [array, setArray] = useState(getProfile);
     const newData = [...array]
@@ -152,7 +156,7 @@ const Profile_Edit = (navigation) => {
     }
 
     return (
-        isLoading ? <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}><ActivityIndicator size={"large"} color={Colors.date} /></View> :
+        !data ? <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}><ActivityIndicator size={"large"} color={Colors.date} /></View> :
             <ScrollView automaticallyAdjustKeyboardInsets>
                 <View style={{ height: hp("100%") }}>
                     <View>

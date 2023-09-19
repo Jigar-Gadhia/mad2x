@@ -5,7 +5,7 @@ import { Colors } from '../assets/colors/colors.js';
 import { fonts } from '../assets/fonts/fonts.js';
 import Icon from 'react-native-vector-icons/Ionicons.js';
 import { Rating } from "react-native-ratings";
-import Animated, { FadeIn, FadeInDown, FadeInUp, SlideInRight, SlideOutRight, useSharedValue } from "react-native-reanimated";
+import Animated, { FadeIn, FadeInDown, FadeInUp, SlideInRight, SlideOutRight, useSharedValue, useAnimatedStyle, withSpring } from "react-native-reanimated";
 import { useAppState } from '@react-native-community/hooks';
 import notifee, { AndroidImportance, AndroidVisibility } from '@notifee/react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,15 +19,18 @@ const Home = (navigation) => {
     const key = useRef("");
     const [keyb, setKey] = useState(Keyboard.isVisible());
     const dispatch = useDispatch();
+    const scale = useSharedValue(1);
 
     useEffect(() => {
         dispatch(Dashboard());
         const keyShow = Keyboard.addListener('keyboardDidShow', () => {
             key.current.focus();
+            scale.value = 1.09
         })
 
         const keyHide = Keyboard.addListener('keyboardDidHide', () => {
             key.current.blur();
+            scale.value = 1
         })
 
         return () => {
@@ -35,6 +38,12 @@ const Home = (navigation) => {
             keyHide.remove();
         }
     }, [keyb])
+
+    const animatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [{ scale: withSpring(scale.value, {stiffness: 300, velocity: 1, restSpeedThreshold: 1}) }],
+        };
+    });
 
     const api = useSelector((state) => state.result.result)
     console.log(api.length)
@@ -62,10 +71,8 @@ const Home = (navigation) => {
     state === "background" ? notify() : cancel();
 
 
-    const [data_doc, setData_doc] = useState("")
-    const showD = useRef(false).current;
+    const [showD, setShowD] = useState(false);
     const [ind, setInd] = useState("");
-    const search = useRef("");
     const [doclist, setdoclist] = useState("");
 
     const image = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
@@ -78,7 +85,7 @@ const Home = (navigation) => {
                 backgroundColor: Colors.white,
             }}>
                 <View style={Styles.bg}>
-                    <TouchableOpacity style={Styles.detail_back} onPress={() => closeD()}>
+                    <TouchableOpacity style={Styles.detail_back} onPress={() => ToggleD()}>
                         <Icon name="arrow-back" size={32} color={Colors.white} />
                     </TouchableOpacity>
                     <View style={Styles.profile_bg}>
@@ -134,13 +141,8 @@ const Home = (navigation) => {
         )
     }
 
-    const closeD = () => {
-        showD.current = false
-    }
-
-    const openD = (index) => {
-        setInd(index)
-        showD.current = true
+    const ToggleD = () => {
+        setShowD(!showD)
     }
 
     const [doc, setdoc] = useState(false)
@@ -187,7 +189,10 @@ const Home = (navigation) => {
         return (
             item.DoctorName != "" && item.SpecialityName != "" ?
                 <Animated.View entering={FadeInUp.delay(200 * index)}>
-                    <TouchableOpacity style={Styles.doc_banner} onPress={() => openD(index)}>
+                    <TouchableOpacity style={Styles.doc_banner} onPress={() => {
+                        setInd(index)
+                        ToggleD()
+                    }}>
                         <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
                             <View style={Styles.doc_indicator}></View>
                         </ImageBackground>
@@ -210,7 +215,10 @@ const Home = (navigation) => {
                 {doc == false ? (
                     <View>
                         {index < 3 && (<Animated.View entering={FadeInUp.delay(200 * index)}>
-                            <TouchableOpacity style={[Styles.doc_banner, index == 2 ? { marginBottom: hp("4%") } : null]} onPress={() => openD(index)}>
+                            <TouchableOpacity style={[Styles.doc_banner, index == 2 ? { marginBottom: hp("4%") } : null]} onPress={() => {
+                                setInd(index)
+                                ToggleD()
+                            }}>
                                 <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
                                     <View style={Styles.doc_indicator}></View>
                                 </ImageBackground>
@@ -226,7 +234,10 @@ const Home = (navigation) => {
                         )}
                     </View>
                 ) : (index < 10 && <Animated.View entering={FadeInUp.delay(200 * index)}>
-                    <TouchableOpacity style={Styles.doc_banner} onPress={() => openD(index)}>
+                    <TouchableOpacity ref={showD} style={Styles.doc_banner} onPress={() => {
+                        setInd(index)
+                        ToggleD()
+                    }}>
                         <ImageBackground style={Styles.doc_image} source={{ uri: image }} borderRadius={10} resizeMode="cover">
                             <View style={Styles.doc_indicator}></View>
                         </ImageBackground>
@@ -261,7 +272,7 @@ const Home = (navigation) => {
     return (
         <Animated.View entering={FadeInDown} style={Styles.container}>
             {showD == true && <Details />}
-            <StatusBar backgroundColor={showD == true ? Colors.blue : Colors.white} barStyle={showD == true ? "light-content" : "dark-content"} />
+            <StatusBar backgroundColor={Colors.white} barStyle="dark-content" />
             <View style={{ height: hp("91.4%"), marginLeft: wp("3%") }}>
                 <View style={{ flex: 1 }}>
                     <View style={Styles.drawer}>
@@ -273,7 +284,7 @@ const Home = (navigation) => {
                         <Text style={Styles.header_text}>Doctor {'\n'}Appointment</Text>
                         <Image style={Styles.header_image} source={{ uri: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }} />
                     </View>
-                    <View style={Styles.searchbar}>
+                    <Animated.View style={[Styles.searchbar, animatedStyle]}>
                         <View style={Styles.searchbar_view}>
                             <TextInput placeholder="Search e.g. Dr Louis"
                                 ref={key}
@@ -286,7 +297,7 @@ const Home = (navigation) => {
                                 <Icon name="search" size={25} color={Colors.white}></Icon>
                             </TouchableOpacity>
                         </View>
-                    </View>
+                    </Animated.View>
 
 
                     <View style={Styles.flatlist_header}>
