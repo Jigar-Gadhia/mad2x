@@ -3,38 +3,35 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import { CommonActions } from "@react-navigation/native";
 import notifee from '@notifee/react-native';
 import { useState } from "react";
+import { backendUrl, signInUrl } from "../data/URLs";
 
 export function user_login(user, pass, navigation) {
+    console.log(backendUrl+signInUrl)
 
-    axios.get("http://staging.webmynehost.com/hospital_demo/services/login.php", {
-        params: {
-            format: "json",
-            uname: user,
-            pwd: pass,
-            gsm: 1213321,
-            deviceid: 4568979
-        }
-    })
+    axios.post(backendUrl+signInUrl, {
+            email: user,
+            password: pass
+        })
         .then(async function (response) {
+            console.log("res: ", response)
             // notify();
             // console.log(response)
             if (response.data.code == "Login Incorrect") {
                 alert(response.data.code)
             }
             else {
-                const id = response.data.did
-                const name = response.data.username
+                const id = response?.data?.user?.id
+                const name = response?.data?.user?.name
                 await AsyncStorage.setItem('dataid', id)
                 await AsyncStorage.setItem('dataname', name)
                 console.log("response", response)
                 navigation.navigation.navigate("TabNav")
-                await AsyncStorage.setItem("pass_data", response.config.params.pwd)
                 const status = "true";
                 await AsyncStorage.setItem('true', status)
             }
         })
         .catch(async function (error) {
-            console.log(error)
+            console.log('error', error)
             await AsyncStorage.setItem('login_error', JSON.stringify(error))
         })
 }

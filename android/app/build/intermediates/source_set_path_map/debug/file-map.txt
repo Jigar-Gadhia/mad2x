@@ -1,52 +1,52 @@
-com.mad2x.app-jetified-core-202108261754-0 C:\Users\jayga\.gradle\caches\transforms-3\1c22b7dc9730ef2f8482e0106f1a867b\transformed\jetified-core-202108261754\res
-com.mad2x.app-room-runtime-2.5.0-1 C:\Users\jayga\.gradle\caches\transforms-3\1d7acf29aca2550d58aea9a5fd37e0df\transformed\room-runtime-2.5.0\res
-com.mad2x.app-jetified-flipper-0.125.0-2 C:\Users\jayga\.gradle\caches\transforms-3\1de5dee59d1627955e42d3d6205f726e\transformed\jetified-flipper-0.125.0\res
-com.mad2x.app-jetified-react-android-0.71.8-debug-3 C:\Users\jayga\.gradle\caches\transforms-3\22566865d31ef74cdd0cb020b75ed98d\transformed\jetified-react-android-0.71.8-debug\res
-com.mad2x.app-appcompat-1.4.1-4 C:\Users\jayga\.gradle\caches\transforms-3\2869819762abc67901fd58a9b84e0d6d\transformed\appcompat-1.4.1\res
-com.mad2x.app-jetified-annotation-experimental-1.1.0-5 C:\Users\jayga\.gradle\caches\transforms-3\2c406cc44c7e51a6483579314a113f0f\transformed\jetified-annotation-experimental-1.1.0\res
-com.mad2x.app-material-1.1.0-6 C:\Users\jayga\.gradle\caches\transforms-3\2fd73835c5f88322cd819e21091ff8cf\transformed\material-1.1.0\res
-com.mad2x.app-jetified-autofill-1.1.0-7 C:\Users\jayga\.gradle\caches\transforms-3\305b398eafd13a2f85fecdd51619bbe3\transformed\jetified-autofill-1.1.0\res
-com.mad2x.app-lifecycle-runtime-2.4.0-8 C:\Users\jayga\.gradle\caches\transforms-3\3584cd402b4fda3a4c5564688eaa83ea\transformed\lifecycle-runtime-2.4.0\res
-com.mad2x.app-core-1.7.0-9 C:\Users\jayga\.gradle\caches\transforms-3\3994986e4b6f29f228dfe8fb9122f0d7\transformed\core-1.7.0\res
-com.mad2x.app-lifecycle-viewmodel-2.3.1-10 C:\Users\jayga\.gradle\caches\transforms-3\3bae22501956cb2f40cb2aae7d68aabd\transformed\lifecycle-viewmodel-2.3.1\res
-com.mad2x.app-jetified-emoji2-views-helper-1.0.0-11 C:\Users\jayga\.gradle\caches\transforms-3\65bba5c785f706bb99b94479c9483ed7\transformed\jetified-emoji2-views-helper-1.0.0\res
-com.mad2x.app-recyclerview-1.1.0-12 C:\Users\jayga\.gradle\caches\transforms-3\6e936cb5fac4c550c2149379f4d482f0\transformed\recyclerview-1.1.0\res
-com.mad2x.app-jetified-viewpager2-1.0.0-13 C:\Users\jayga\.gradle\caches\transforms-3\7b19121545223a5719f58d9c1062612b\transformed\jetified-viewpager2-1.0.0\res
-com.mad2x.app-jetified-appcompat-resources-1.4.1-14 C:\Users\jayga\.gradle\caches\transforms-3\858a0a1ce5582950d896423a8f83984e\transformed\jetified-appcompat-resources-1.4.1\res
-com.mad2x.app-jetified-play-services-basement-18.0.0-15 C:\Users\jayga\.gradle\caches\transforms-3\88e71071474df70f59a579fca9732c5c\transformed\jetified-play-services-basement-18.0.0\res
-com.mad2x.app-jetified-savedstate-1.1.0-16 C:\Users\jayga\.gradle\caches\transforms-3\9502a6bb71cbe65ff7605c9abe0fd9c7\transformed\jetified-savedstate-1.1.0\res
-com.mad2x.app-jetified-firebase-messaging-21.1.0-17 C:\Users\jayga\.gradle\caches\transforms-3\97ce3fb1f67861a5b45d3297f7547fc9\transformed\jetified-firebase-messaging-21.1.0\res
-com.mad2x.app-sqlite-framework-2.3.0-18 C:\Users\jayga\.gradle\caches\transforms-3\a6fc426ce40f48d3976763f682fb444b\transformed\sqlite-framework-2.3.0\res
-com.mad2x.app-fragment-1.3.6-19 C:\Users\jayga\.gradle\caches\transforms-3\ac49766205ccd42177b4d582840522f2\transformed\fragment-1.3.6\res
-com.mad2x.app-jetified-lifecycle-process-2.4.0-20 C:\Users\jayga\.gradle\caches\transforms-3\afe3a0cc82c76a7c864d2efd8324d92e\transformed\jetified-lifecycle-process-2.4.0\res
-com.mad2x.app-jetified-core-ktx-1.6.0-21 C:\Users\jayga\.gradle\caches\transforms-3\b29fb047d5ceb4e1e28b5eeac2bee910\transformed\jetified-core-ktx-1.6.0\res
-com.mad2x.app-jetified-startup-runtime-1.0.0-22 C:\Users\jayga\.gradle\caches\transforms-3\be8f8d425926b2ab9ec0d8d0c3caae7a\transformed\jetified-startup-runtime-1.0.0\res
-com.mad2x.app-jetified-emoji2-1.0.0-23 C:\Users\jayga\.gradle\caches\transforms-3\c1cd3487ee93faa69a46c921c06f102e\transformed\jetified-emoji2-1.0.0\res
-com.mad2x.app-jetified-tracing-1.1.0-24 C:\Users\jayga\.gradle\caches\transforms-3\d11b6876e6eb8c85795979da7f2458f5\transformed\jetified-tracing-1.1.0\res
-com.mad2x.app-work-runtime-2.8.0-25 C:\Users\jayga\.gradle\caches\transforms-3\dd4ffb3ba6791e2936fe0f7633d6511e\transformed\work-runtime-2.8.0\res
-com.mad2x.app-cardview-1.0.0-26 C:\Users\jayga\.gradle\caches\transforms-3\de52fc3fb23578f02940ffac44877ce3\transformed\cardview-1.0.0\res
-com.mad2x.app-transition-1.2.0-27 C:\Users\jayga\.gradle\caches\transforms-3\e32d4ee004e5151cc8aea47297e5af35\transformed\transition-1.2.0\res
-com.mad2x.app-sqlite-2.3.0-28 C:\Users\jayga\.gradle\caches\transforms-3\ee029fe814f10448264743b6780301c8\transformed\sqlite-2.3.0\res
-com.mad2x.app-jetified-drawee-2.6.0-29 C:\Users\jayga\.gradle\caches\transforms-3\f4a65ce6ec58fd6d97bcb819934dfdd7\transformed\jetified-drawee-2.6.0\res
-com.mad2x.app-coordinatorlayout-1.1.0-30 C:\Users\jayga\.gradle\caches\transforms-3\ff8cf5244b1452ffe5becfa7e824ee68\transformed\coordinatorlayout-1.1.0\res
-com.mad2x.app-resValues-31 F:\new project\mad2x\android\app\build\generated\res\resValues\debug
-com.mad2x.app-rs-32 F:\new project\mad2x\android\app\build\generated\res\rs\debug
-com.mad2x.app-mergeDebugResources-33 F:\new project\mad2x\android\app\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
-com.mad2x.app-mergeDebugResources-34 F:\new project\mad2x\android\app\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
-com.mad2x.app-merged_res-35 F:\new project\mad2x\android\app\build\intermediates\merged_res\debug
-com.mad2x.app-debug-36 F:\new project\mad2x\android\app\src\debug\res
-com.mad2x.app-main-37 F:\new project\mad2x\android\app\src\main\res
-com.mad2x.app-packaged_res-38 F:\new project\mad2x\node_modules\@notifee\react-native\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-39 F:\new project\mad2x\node_modules\@react-native-async-storage\async-storage\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-40 F:\new project\mad2x\node_modules\@react-native-community\netinfo\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-41 F:\new project\mad2x\node_modules\react-native-flipper-performance-plugin\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-42 F:\new project\mad2x\node_modules\react-native-flipper\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-43 F:\new project\mad2x\node_modules\react-native-fs\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-44 F:\new project\mad2x\node_modules\react-native-gesture-handler\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-45 F:\new project\mad2x\node_modules\react-native-image-picker\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-46 F:\new project\mad2x\node_modules\react-native-push-notification\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-47 F:\new project\mad2x\node_modules\react-native-safe-area-context\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-48 F:\new project\mad2x\node_modules\react-native-screens\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-49 F:\new project\mad2x\node_modules\react-native-splash-screen\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-50 F:\new project\mad2x\node_modules\react-native-svg\android\build\intermediates\packaged_res\debug
-com.mad2x.app-packaged_res-51 F:\new project\mad2x\node_modules\react-native-vector-icons\android\build\intermediates\packaged_res\debug
+com.mad2x.app-jetified-core-202108261754-0 C:\Users\Jiggs\.gradle\caches\transforms-3\1c22b7dc9730ef2f8482e0106f1a867b\transformed\jetified-core-202108261754\res
+com.mad2x.app-room-runtime-2.5.0-1 C:\Users\Jiggs\.gradle\caches\transforms-3\1d7acf29aca2550d58aea9a5fd37e0df\transformed\room-runtime-2.5.0\res
+com.mad2x.app-jetified-flipper-0.125.0-2 C:\Users\Jiggs\.gradle\caches\transforms-3\1de5dee59d1627955e42d3d6205f726e\transformed\jetified-flipper-0.125.0\res
+com.mad2x.app-jetified-react-android-0.71.8-debug-3 C:\Users\Jiggs\.gradle\caches\transforms-3\22566865d31ef74cdd0cb020b75ed98d\transformed\jetified-react-android-0.71.8-debug\res
+com.mad2x.app-appcompat-1.4.1-4 C:\Users\Jiggs\.gradle\caches\transforms-3\2869819762abc67901fd58a9b84e0d6d\transformed\appcompat-1.4.1\res
+com.mad2x.app-jetified-annotation-experimental-1.1.0-5 C:\Users\Jiggs\.gradle\caches\transforms-3\2c406cc44c7e51a6483579314a113f0f\transformed\jetified-annotation-experimental-1.1.0\res
+com.mad2x.app-material-1.1.0-6 C:\Users\Jiggs\.gradle\caches\transforms-3\2fd73835c5f88322cd819e21091ff8cf\transformed\material-1.1.0\res
+com.mad2x.app-jetified-autofill-1.1.0-7 C:\Users\Jiggs\.gradle\caches\transforms-3\305b398eafd13a2f85fecdd51619bbe3\transformed\jetified-autofill-1.1.0\res
+com.mad2x.app-lifecycle-runtime-2.4.0-8 C:\Users\Jiggs\.gradle\caches\transforms-3\3584cd402b4fda3a4c5564688eaa83ea\transformed\lifecycle-runtime-2.4.0\res
+com.mad2x.app-core-1.7.0-9 C:\Users\Jiggs\.gradle\caches\transforms-3\3994986e4b6f29f228dfe8fb9122f0d7\transformed\core-1.7.0\res
+com.mad2x.app-lifecycle-viewmodel-2.3.1-10 C:\Users\Jiggs\.gradle\caches\transforms-3\3bae22501956cb2f40cb2aae7d68aabd\transformed\lifecycle-viewmodel-2.3.1\res
+com.mad2x.app-jetified-emoji2-views-helper-1.0.0-11 C:\Users\Jiggs\.gradle\caches\transforms-3\65bba5c785f706bb99b94479c9483ed7\transformed\jetified-emoji2-views-helper-1.0.0\res
+com.mad2x.app-recyclerview-1.1.0-12 C:\Users\Jiggs\.gradle\caches\transforms-3\6e936cb5fac4c550c2149379f4d482f0\transformed\recyclerview-1.1.0\res
+com.mad2x.app-jetified-viewpager2-1.0.0-13 C:\Users\Jiggs\.gradle\caches\transforms-3\7b19121545223a5719f58d9c1062612b\transformed\jetified-viewpager2-1.0.0\res
+com.mad2x.app-jetified-appcompat-resources-1.4.1-14 C:\Users\Jiggs\.gradle\caches\transforms-3\858a0a1ce5582950d896423a8f83984e\transformed\jetified-appcompat-resources-1.4.1\res
+com.mad2x.app-jetified-play-services-basement-18.0.0-15 C:\Users\Jiggs\.gradle\caches\transforms-3\88e71071474df70f59a579fca9732c5c\transformed\jetified-play-services-basement-18.0.0\res
+com.mad2x.app-jetified-savedstate-1.1.0-16 C:\Users\Jiggs\.gradle\caches\transforms-3\9502a6bb71cbe65ff7605c9abe0fd9c7\transformed\jetified-savedstate-1.1.0\res
+com.mad2x.app-jetified-firebase-messaging-21.1.0-17 C:\Users\Jiggs\.gradle\caches\transforms-3\97ce3fb1f67861a5b45d3297f7547fc9\transformed\jetified-firebase-messaging-21.1.0\res
+com.mad2x.app-sqlite-framework-2.3.0-18 C:\Users\Jiggs\.gradle\caches\transforms-3\a6fc426ce40f48d3976763f682fb444b\transformed\sqlite-framework-2.3.0\res
+com.mad2x.app-fragment-1.3.6-19 C:\Users\Jiggs\.gradle\caches\transforms-3\ac49766205ccd42177b4d582840522f2\transformed\fragment-1.3.6\res
+com.mad2x.app-jetified-lifecycle-process-2.4.0-20 C:\Users\Jiggs\.gradle\caches\transforms-3\afe3a0cc82c76a7c864d2efd8324d92e\transformed\jetified-lifecycle-process-2.4.0\res
+com.mad2x.app-jetified-core-ktx-1.6.0-21 C:\Users\Jiggs\.gradle\caches\transforms-3\b29fb047d5ceb4e1e28b5eeac2bee910\transformed\jetified-core-ktx-1.6.0\res
+com.mad2x.app-jetified-startup-runtime-1.0.0-22 C:\Users\Jiggs\.gradle\caches\transforms-3\be8f8d425926b2ab9ec0d8d0c3caae7a\transformed\jetified-startup-runtime-1.0.0\res
+com.mad2x.app-jetified-emoji2-1.0.0-23 C:\Users\Jiggs\.gradle\caches\transforms-3\c1cd3487ee93faa69a46c921c06f102e\transformed\jetified-emoji2-1.0.0\res
+com.mad2x.app-jetified-tracing-1.1.0-24 C:\Users\Jiggs\.gradle\caches\transforms-3\d11b6876e6eb8c85795979da7f2458f5\transformed\jetified-tracing-1.1.0\res
+com.mad2x.app-work-runtime-2.8.0-25 C:\Users\Jiggs\.gradle\caches\transforms-3\dd4ffb3ba6791e2936fe0f7633d6511e\transformed\work-runtime-2.8.0\res
+com.mad2x.app-cardview-1.0.0-26 C:\Users\Jiggs\.gradle\caches\transforms-3\de52fc3fb23578f02940ffac44877ce3\transformed\cardview-1.0.0\res
+com.mad2x.app-transition-1.2.0-27 C:\Users\Jiggs\.gradle\caches\transforms-3\e32d4ee004e5151cc8aea47297e5af35\transformed\transition-1.2.0\res
+com.mad2x.app-sqlite-2.3.0-28 C:\Users\Jiggs\.gradle\caches\transforms-3\ee029fe814f10448264743b6780301c8\transformed\sqlite-2.3.0\res
+com.mad2x.app-jetified-drawee-2.6.0-29 C:\Users\Jiggs\.gradle\caches\transforms-3\f4a65ce6ec58fd6d97bcb819934dfdd7\transformed\jetified-drawee-2.6.0\res
+com.mad2x.app-coordinatorlayout-1.1.0-30 C:\Users\Jiggs\.gradle\caches\transforms-3\ff8cf5244b1452ffe5becfa7e824ee68\transformed\coordinatorlayout-1.1.0\res
+com.mad2x.app-resValues-31 C:\Users\Jiggs\Documents\mad2x\android\app\build\generated\res\resValues\debug
+com.mad2x.app-rs-32 C:\Users\Jiggs\Documents\mad2x\android\app\build\generated\res\rs\debug
+com.mad2x.app-mergeDebugResources-33 C:\Users\Jiggs\Documents\mad2x\android\app\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.mad2x.app-mergeDebugResources-34 C:\Users\Jiggs\Documents\mad2x\android\app\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.mad2x.app-merged_res-35 C:\Users\Jiggs\Documents\mad2x\android\app\build\intermediates\merged_res\debug
+com.mad2x.app-debug-36 C:\Users\Jiggs\Documents\mad2x\android\app\src\debug\res
+com.mad2x.app-main-37 C:\Users\Jiggs\Documents\mad2x\android\app\src\main\res
+com.mad2x.app-packaged_res-38 C:\Users\Jiggs\Documents\mad2x\node_modules\@notifee\react-native\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-39 C:\Users\Jiggs\Documents\mad2x\node_modules\@react-native-async-storage\async-storage\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-40 C:\Users\Jiggs\Documents\mad2x\node_modules\@react-native-community\netinfo\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-41 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-flipper-performance-plugin\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-42 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-flipper\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-43 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-fs\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-44 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-gesture-handler\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-45 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-image-picker\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-46 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-push-notification\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-47 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-safe-area-context\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-48 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-screens\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-49 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-splash-screen\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-50 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-svg\android\build\intermediates\packaged_res\debug
+com.mad2x.app-packaged_res-51 C:\Users\Jiggs\Documents\mad2x\node_modules\react-native-vector-icons\android\build\intermediates\packaged_res\debug

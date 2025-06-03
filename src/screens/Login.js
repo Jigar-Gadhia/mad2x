@@ -68,7 +68,7 @@ const Login = (navigation) => {
             const err = await AsyncStorage.getItem('login_error')
             console.log(res)
             if (res == "Login Incorrect" || err) {
-                toggleLoader();
+                // toggleLoader();
                 setNoti(true);
             }
             else {

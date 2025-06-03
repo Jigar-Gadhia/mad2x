@@ -49,7 +49,7 @@ const Signup = (navigation) => {
             user_signup(user, email, pass, cpass, navigation)
             const res = await AsyncStorage.getItem('signup_res')
             const err = await AsyncStorage.getItem('signup_error')
-            if (res) {
+            if (!err) {
                 toggleLoader();
             }
         }
