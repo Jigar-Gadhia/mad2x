@@ -6,10 +6,10 @@ import '../fonts/Lato-Bold.ttf';
 import '../fonts/Lato-Light.ttf';
 
 export const fonts = {
-    heavy: "Lato-Heavy",
-    semibold: "Lato-Semibold",
-    medium: "Lato-Medium",
-    regular: "Lato-Regular",
-    bold: "Lato-Bold",
-    lite: "Lato-Light"
-}
+  heavy: 'Lato-Heavy',
+  semibold: 'Lato-Semibold',
+  medium: 'Lato-Medium',
+  regular: 'Lato-Regular',
+  bold: 'Lato-Bold',
+  lite: 'Lato-Light',
+};

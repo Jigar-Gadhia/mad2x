@@ -1,17 +1,17 @@
-import { index } from "./constants";
+import {index} from './constants';
 
 const initialState = {
-    ind: ""
-}
+  ind: '',
+};
 
 export const indreducer = (state = initialState, action) => {
-    switch(action.type){
-        case index :
-            return {
-                ...state,
-                ind: action.payload
-            }
-        default: 
-        return state
-    }
-}
+  switch (action.type) {
+    case index:
+      return {
+        ...state,
+        ind: action.payload,
+      };
+    default:
+      return state;
+  }
+};

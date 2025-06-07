@@ -17,6 +17,8 @@ import io.invertase.notifee.NotifeePackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-community/netinfo
 import com.reactnativecommunity.netinfo.NetInfoPackage;
+// react-native-device-info
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 // react-native-flipper
 import com.facebook.flipper.reactnative.FlipperPackage;
 // react-native-fs
@@ -89,6 +91,7 @@ public class PackageList {
       new NotifeePackage(),
       new AsyncStoragePackage(),
       new NetInfoPackage(),
+      new RNDeviceInfo(),
       new FlipperPackage(),
       new RNFSPackage(),
       new RNGestureHandlerPackage(),
