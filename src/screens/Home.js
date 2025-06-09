@@ -27,6 +27,8 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
+  FadeOutDown,
+  Layout,
 } from 'react-native-reanimated';
 import {useAppState} from '@react-native-community/hooks';
 import notifee, {
@@ -147,7 +149,7 @@ const Home = () => {
   ];
 
   const renderCat = ({item, index}) => (
-    <Animated.View entering={FadeIn.delay(200 * index)}>
+    <View>
       <TouchableOpacity
         style={[
           Styles.doc_banner_view,
@@ -169,12 +171,12 @@ const Home = () => {
           {item.name}
         </Text>
       </TouchableOpacity>
-    </Animated.View>
+    </View>
   );
 
   const renderDoc = ({item, index}) => {
     return (
-      <Animated.View entering={FadeInUp.delay(200 * index)}>
+      <View>
         <TouchableOpacity
           ref={showD}
           style={[
@@ -220,7 +222,7 @@ const Home = () => {
             />
           </View>
         </TouchableOpacity>
-      </Animated.View>
+      </View>
     );
   };
 
@@ -240,9 +242,9 @@ const Home = () => {
   return (
     <Animated.View entering={FadeInDown} style={Styles.container}>
       <StatusBar
-        backgroundColor={showD ? Colors.blue : Colors.white}
+        backgroundColor={!showD ? Colors.white : Colors.blue}
         barStyle={showD ? 'light-content' : 'dark-content'}
-        key={showD}
+        key={Math.random()}
       />
       {showD && <Details ToggleD={ToggleD} api={api} image={image} ind={ind} />}
       <View style={Styles.header}>
@@ -268,93 +270,80 @@ const Home = () => {
           </TouchableOpacity>
         </View>
       </Animated.View>
-
-      {!doc && (
-        <View style={Styles.flatlist_header}>
-          <Text style={Styles.flatlist_header_text}>Categories</Text>
-          <View style={{width: wp('100%'), height: hp('13%')}}>
+      <Animated.View
+        entering={FadeInDown}
+        exiting={FadeOutDown}
+        style={[Styles.flatlist_header, {display: !doc ? 'flex' : 'none'}]}>
+        <Text style={Styles.flatlist_header_text}>Categories</Text>
+        <View style={{width: wp('100%'), height: hp('13%')}}>
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={dataCat}
+            renderItem={renderCat}
+          />
+        </View>
+      </Animated.View>
+      <View style={Styles.doc_view}>
+        <Text style={Styles.doc_header}>Top Doctors</Text>
+        <TouchableOpacity
+          onPress={() => {
+            setdoc(!doc);
+          }}>
+          {api === '' ? (
+            <ActivityIndicator size={'small'} color={Colors.date} />
+          ) : (
+            <Text style={Styles.doc_text}>
+              {doc === false ? (doclist !== '' ? null : 'See All') : 'See less'}
+            </Text>
+          )}
+        </TouchableOpacity>
+      </View>
+      <View style={Styles.doc_details}>
+        {api === '' ? (
+          <View>
+            <ActivityIndicator
+              color={Colors.date}
+              size={'large'}
+              style={{
+                marginTop: hp('15%'),
+              }}
+            />
+            <Text
+              style={{
+                alignSelf: 'center',
+                fontFamily: fonts.semibold,
+                fontSize: 18,
+                marginTop: hp('1%'),
+                marginLeft: wp('3%'),
+              }}>
+              Loading...
+            </Text>
+          </View>
+        ) : api.length === 0 ? (
+          <View
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text style={{color: 'black'}}>No data found !</Text>
+          </View>
+        ) : (
+          <View
+            style={{
+              backgroundColor: Colors.white,
+              flexGrow: 1,
+            }}>
             <FlatList
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              data={dataCat}
-              renderItem={renderCat}
+              data={api}
+              style={{flex: 1}}
+              contentContainerStyle={{
+                flexGrow: 1,
+                gap: 20,
+                paddingBottom: hp('3%'),
+              }}
+              renderItem={renderDoc}
+              initialNumToRender={10}
             />
           </View>
-        </View>
-      )}
-      <View
-        style={{
-          backgroundColor: Colors.white,
-          flex: 1,
-        }}>
-        <View style={Styles.doc_view}>
-          <Text style={Styles.doc_header}>Top Doctors</Text>
-          <TouchableOpacity
-            onPress={() => {
-              setdoc(!doc);
-              LayoutAnimation.configureNext(
-                LayoutAnimation.Presets.easeInEaseOut,
-                () => {
-                  setAnimating(false);
-                },
-              );
-              setAnimating(true);
-            }}>
-            {api === '' ? (
-              <ActivityIndicator size={'small'} color={Colors.date} />
-            ) : (
-              <Text style={Styles.doc_text}>
-                {doc === false
-                  ? doclist !== ''
-                    ? null
-                    : 'See All'
-                  : 'See less'}
-              </Text>
-            )}
-          </TouchableOpacity>
-        </View>
-        <View style={Styles.doc_details}>
-          {api === '' ? (
-            <View>
-              <ActivityIndicator
-                color={Colors.date}
-                size={'large'}
-                style={{
-                  marginTop: hp('15%'),
-                }}
-              />
-              <Text
-                style={{
-                  alignSelf: 'center',
-                  fontFamily: fonts.semibold,
-                  fontSize: 18,
-                  marginTop: hp('1%'),
-                  marginLeft: wp('3%'),
-                }}>
-                Loading...
-              </Text>
-            </View>
-          ) : api.length === 0 ? (
-            <View
-              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={{color: 'black'}}>No data found !</Text>
-            </View>
-          ) : (
-            <View
-              style={{
-                backgroundColor: Colors.white,
-                flexGrow: 1,
-              }}>
-              <FlatList
-                data={api}
-                style={{flex: 1}}
-                contentContainerStyle={{flexGrow: 1}}
-                renderItem={renderDoc}
-                initialNumToRender={10}
-              />
-            </View>
-          )}
-        </View>
+        )}
       </View>
     </Animated.View>
   );
@@ -363,11 +352,10 @@ const Home = () => {
 const Styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.white,
-    flex: 1,
-    paddingTop: hp('2%'),
+    height: '93%',
   },
   header: {
-    marginTop: hp('1%'),
+    marginTop: hp('2%'),
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -449,8 +437,9 @@ const Styles = StyleSheet.create({
     flexGrow: 1,
   },
   doc_image: {
-    height: hp('7%'),
-    width: wp('14%'),
+    height: 70,
+    width: 70,
+    elevation: 5,
   },
   doc_indicator: {
     backgroundColor: Colors.lite_green,
@@ -463,16 +452,14 @@ const Styles = StyleSheet.create({
     borderColor: Colors.search_bar,
   },
   doc_banner: {
-    height: hp('10%'),
     borderRadius: 15,
     shadowColor: Colors.grey,
     backgroundColor: Colors.white,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     flexDirection: 'row',
     marginHorizontal: wp('5%'),
-    marginBottom: wp('2%'),
-    marginTop: hp('2%'),
+    padding: hp('1%'),
   },
   doc_banner_header: {
     fontFamily: fonts.regular,

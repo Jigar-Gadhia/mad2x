@@ -2,6 +2,7 @@ import {index, dashboard, profileFetch} from './constants';
 import axios from 'react-native-axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {backendUrl, dashboardData, profile} from '../data/URLs';
+import {hideLoader, showLoader} from '../services/globalLoader';
 
 export const Index = val => {
   return {
@@ -20,6 +21,7 @@ export const Dashboard = () => {
         },
       })
       .then(response => {
+        console.log('res: ', response);
         dispatch({
           type: dashboard,
           payload: response.data.data,
@@ -37,14 +39,13 @@ export const Dashboard = () => {
 export const fetchProfile = () => {
   return async dispatch => {
     try {
+      showLoader();
       const token = await AsyncStorage.getItem('token');
-      console.log('token: ', token);
       const response = await axios.get(backendUrl + profile, {
         headers: {
           Authorization: token,
         },
       });
-      console.log('response: ', response);
 
       dispatch({
         type: profileFetch,
@@ -56,6 +57,8 @@ export const fetchProfile = () => {
         type: profileFetch,
         payload: error,
       });
+    } finally {
+      hideLoader();
     }
   };
 };

@@ -23,6 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {InputForm} from '../components/InputForm.js';
 import {useDispatch, useSelector} from 'react-redux';
 import {backendUrl, profileUpdate} from '../data/URLs.js';
+import {hideLoader, showLoader} from '../services/globalLoader.js';
 
 const Profile_Edit = navigation => {
   const dispatch = useDispatch();
@@ -116,6 +117,7 @@ const Profile_Edit = navigation => {
   const [address, SetAddress] = useState('');
 
   const ApiPost = async () => {
+    showLoader();
     const token = await AsyncStorage.getItem('token');
     var formdata = new FormData();
     formdata.append('name', array[0].value.toString() || null);
@@ -132,11 +134,11 @@ const Profile_Edit = navigation => {
       .post(backendUrl + profileUpdate, formdata, {
         headers: {'content-type': 'multipart/form-data', Authorization: token},
       })
-      .then(function (response) {
-        console.log('postApi', response);
-      })
       .catch(function (error) {
         console.log(error);
+      })
+      .finally(() => {
+        hideLoader();
       });
   };
 

@@ -100,7 +100,7 @@ const Details = ({ToggleD, api, image, ind}) => {
           <View style={Styles.book_app_view}>
             <TouchableOpacity
               style={Styles.book_app_btn}
-              onPress={() => navigation.navigation.navigate('Appointment')}>
+              onPress={() => navigation.navigate('Appointment')}>
               <Text style={Styles.book_app_text}>Book An Appointment</Text>
             </TouchableOpacity>
           </View>

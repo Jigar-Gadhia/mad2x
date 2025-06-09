@@ -11,5 +11,6 @@ module.exports = {
     'react-native/no-unused-styles': 1,
     'react/no-unescaped-entities': 0,
     'no-alert': 0,
+    'react/display-name': 0,
   },
 };

@@ -33,32 +33,6 @@ const Profile = navigation => {
     data?.profilePic ??
     'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
 
-  const error = useSelector(state => state.data.error);
-
-  const notify = async () => {
-    await notifee.requestPermission();
-
-    const channelId = await notifee.createChannel({
-      id: 'logout',
-      name: 'logout Channel',
-      sound: 'doorbell',
-      importance: AndroidImportance.HIGH,
-    });
-
-    await notifee.displayNotification({
-      title: 'Authentication',
-      body: 'User logged out successfully',
-      android: {
-        channelId,
-        sound: 'doorbell',
-        importance: AndroidImportance.HIGH,
-        pressAction: {
-          id: 'logout',
-        },
-      },
-    });
-  };
-
   const ApiLogout = async () => {
     navigation.navigation.reset({
       index: 0,
@@ -74,7 +48,7 @@ const Profile = navigation => {
         entering={FadeIn.delay(50 * index)}
         style={Styles.pdetails}>
         <View style={Styles.image_view}>
-          {index == 0 ? (
+          {index === 0 ? (
             <ImageBackground
               resizeMode="contain"
               style={Styles.image}
@@ -176,7 +150,6 @@ const Profile = navigation => {
               accessibilityHint="Tap to logout"
               style={Styles.back}
               onPress={() => {
-                notify();
                 ApiLogout(uname, pwd);
               }}>
               <Icon name="power" size={27} color={Colors.white} />
@@ -188,7 +161,6 @@ const Profile = navigation => {
                 backgroundColor: Colors.slight_blue,
                 borderRadius: 8,
                 marginBottom: hp('2%'),
-                marginLeft: wp('9%'),
               }}>
               <View
                 style={{
@@ -276,6 +248,7 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: wp('10%'),
     marginTop: hp('1%'),
+    paddingHorizontal: wp('7%'),
   },
   profile_image: {
     height: hp('10%'),
@@ -285,9 +258,7 @@ const Styles = StyleSheet.create({
     marginBottom: hp('1%'),
   },
   profile_text_view: {
-    marginBottom: hp('3%'),
     marginLeft: wp('1%'),
-    // backgroundColor: Colors.cyan,
     borderRadius: 8,
   },
   profile_header_text: {
