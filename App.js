@@ -15,6 +15,7 @@ import {Splashscreen} from './src/components/SplashScreen.js';
 import AnimationOverlay from './src/components/AnimationOverlay.js';
 import {setLoaderRef} from './src/services/globalLoader.js';
 import {Screens} from './src/services/Screens.js';
+import DoctorDetails from './src/screens/DoctorDetails.js';
 
 if (__DEV__) {
   connectToDevTools({
@@ -64,42 +65,47 @@ const App = () => {
           <Stack.Screen
             name={Screens.Login}
             component={Login}
-            options={{animation: 'slide_from_bottom'}}
+            options={{animation: 'slide_from_right'}}
           />
           <Stack.Screen
             name="Signup"
             component={Signup}
-            options={{animation: 'slide_from_bottom'}}
+            options={{animation: 'slide_from_right'}}
           />
           <Stack.Screen
             name={Screens.TabNav}
             component={TabNav}
-            options={{animation: 'slide_from_bottom'}}
+            options={{animation: 'slide_from_right'}}
           />
           <Stack.Screen
             name={Screens.Home}
             component={Home}
-            options={{animation: 'slide_from_bottom'}}
+            options={{animation: 'slide_from_right'}}
           />
           {/* <Stack.Screen
             name="DrawNav"
             component={DrawNav}
-            options={{animation: 'slide_from_bottom'}}
+            options={{animation: 'slide_from_right'}}
           /> */}
           <Stack.Screen
             name={Screens.Appointment}
             component={Appointment}
-            options={{animation: 'slide_from_bottom'}}
+            options={{animation: 'slide_from_right'}}
           />
           <Stack.Screen
             name={Screens.Success}
             component={Success}
-            options={{animation: 'slide_from_bottom'}}
+            options={{animation: 'slide_from_right'}}
           />
           <Stack.Screen
             name={Screens.Settings}
             component={Settings}
-            options={{animation: 'slide_from_bottom'}}
+            options={{animation: 'slide_from_right'}}
+          />
+          <Stack.Screen
+            name={Screens.DoctorDetails}
+            component={DoctorDetails}
+            options={{animation: 'slide_from_right'}}
           />
           {/* <Stack.Screen name="Animation" component={Animation}/> */}
         </Stack.Navigator>

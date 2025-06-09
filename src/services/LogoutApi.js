@@ -24,7 +24,6 @@ export const ApiLogout = async (uname, pwd, navigation) => {
             routes: [{name: 'Login'}],
           }),
         );
-        setUrl('');
         await AsyncStorage.clear();
       }
     })

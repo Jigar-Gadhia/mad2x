@@ -11,7 +11,7 @@ import {
   StatusBar,
   ActivityIndicator,
   Keyboard,
-  LayoutAnimation,
+  Animated,
 } from 'react-native';
 import {
   heightPercentageToDP as hp,
@@ -20,16 +20,6 @@ import {
 import {Colors} from '../assets/colors/colors.js';
 import {fonts} from '../assets/fonts/fonts.js';
 import Icon from 'react-native-vector-icons/Ionicons.js';
-import Animated, {
-  FadeIn,
-  FadeInDown,
-  FadeInUp,
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-  FadeOutDown,
-  Layout,
-} from 'react-native-reanimated';
 import {useAppState} from '@react-native-community/hooks';
 import notifee, {
   AndroidImportance,
@@ -38,13 +28,37 @@ import notifee, {
 import {useDispatch, useSelector} from 'react-redux';
 import {Dashboard, fetchProfile} from '../redux/actions.js';
 import Details from '../components/Details.js';
+import {responsiveHeight, responsiveWidth} from '../services/ResponsiveSize.js';
+import LinearGradient from 'react-native-linear-gradient';
+import {Screens} from '../services/Screens.js';
+import {currentDetails} from '../redux/constants.js';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [animating, setAnimating] = useState(false);
   const key = useRef('');
   const dispatch = useDispatch();
-  const scale = useSharedValue(1);
   const data = useSelector(state => state.data.data);
+  const topFadeOpacity = useRef(new Animated.Value(1)).current;
+  const bottomFadeOpacity = useRef(new Animated.Value(1)).current;
+  const scrollY = useRef(new Animated.Value(0)).current;
+
+  const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+
+  useEffect(() => {
+    const id = scrollY.addListener(({value}) => {
+      topFadeOpacity.setValue(value <= 1 ? 0 : 1);
+      bottomFadeOpacity.setValue(value >= 200 ? 0 : 1); // adjust 200 based on content
+    });
+
+    return () => scrollY.removeListener(id);
+  }, [bottomFadeOpacity, scrollY, topFadeOpacity]);
+
+  const onScroll = Animated.event(
+    [{nativeEvent: {contentOffset: {y: scrollY}}}],
+    {
+      useNativeDriver: true,
+    },
+  );
 
   useEffect(() => {
     dispatch(fetchProfile());
@@ -54,33 +68,17 @@ const Home = () => {
     dispatch(Dashboard());
     const keyShow = Keyboard.addListener('keyboardDidShow', () => {
       key.current.focus();
-      scale.value = 1.09;
     });
 
     const keyHide = Keyboard.addListener('keyboardDidHide', () => {
       key.current.blur();
-      scale.value = 1;
     });
 
     return () => {
       keyShow.remove();
       keyHide.remove();
     };
-  }, [dispatch, scale]);
-
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          scale: withSpring(scale.value, {
-            stiffness: 300,
-            velocity: 1,
-            restSpeedThreshold: 1,
-          }),
-        },
-      ],
-    };
-  });
+  }, [dispatch]);
 
   const api = useSelector(state => state.result.result);
 
@@ -106,16 +104,15 @@ const Home = () => {
 
   state === 'background' ? notify() : cancel();
 
-  const [showD, setShowD] = useState(false);
-  const [ind, setInd] = useState('');
   const [doclist, setdoclist] = useState('');
 
   const image =
     data?.profilePic ??
     'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
 
-  const ToggleD = () => {
-    setShowD(!showD);
+  const ToggleD = item => {
+    dispatch({type: currentDetails, payload: item});
+    navigation.navigate(Screens.DoctorDetails);
   };
 
   const [doc, setdoc] = useState(false);
@@ -178,7 +175,6 @@ const Home = () => {
     return (
       <View>
         <TouchableOpacity
-          ref={showD}
           style={[
             Styles.doc_banner,
             {
@@ -187,8 +183,7 @@ const Home = () => {
             },
           ]}
           onPress={() => {
-            setInd(index);
-            ToggleD();
+            ToggleD(item);
           }}>
           <ImageBackground
             style={Styles.doc_image}
@@ -211,15 +206,10 @@ const Home = () => {
             <Icon
               name="ellipse"
               size={10}
-              color={Colors.options}
-              style={{marginVertical: hp('1%')}}
+              color={Colors.blue}
+              style={{marginBottom: responsiveHeight(5)}}
             />
-            <Icon
-              name="ellipse"
-              size={10}
-              color={Colors.options}
-              style={{marginBottom: hp('1%')}}
-            />
+            <Icon name="ellipse" size={10} color={Colors.blue} />
           </View>
         </TouchableOpacity>
       </View>
@@ -240,13 +230,12 @@ const Home = () => {
   };
 
   return (
-    <Animated.View entering={FadeInDown} style={Styles.container}>
+    <View style={Styles.container}>
       <StatusBar
-        backgroundColor={!showD ? Colors.white : Colors.blue}
-        barStyle={showD ? 'light-content' : 'dark-content'}
+        backgroundColor={Colors.white}
+        barStyle="dark-content"
         key={Math.random()}
       />
-      {showD && <Details ToggleD={ToggleD} api={api} image={image} ind={ind} />}
       <View style={Styles.header}>
         <Text style={Styles.header_text}>Doctor {'\n'}Appointment</Text>
         <Image
@@ -256,7 +245,7 @@ const Home = () => {
           }}
         />
       </View>
-      <Animated.View style={[Styles.searchbar, animatedStyle]}>
+      <View style={[Styles.searchbar]}>
         <View style={Styles.searchbar_view}>
           <TextInput
             placeholder="Search e.g. Dr Louis"
@@ -269,21 +258,20 @@ const Home = () => {
             <Icon name="search" size={25} color={Colors.white} />
           </TouchableOpacity>
         </View>
-      </Animated.View>
-      <Animated.View
-        entering={FadeInDown}
-        exiting={FadeOutDown}
-        style={[Styles.flatlist_header, {display: !doc ? 'flex' : 'none'}]}>
+      </View>
+      <View style={[Styles.flatlist_header, {display: !doc ? 'flex' : 'none'}]}>
         <Text style={Styles.flatlist_header_text}>Categories</Text>
-        <View style={{width: wp('100%'), height: hp('13%')}}>
-          <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={dataCat}
-            renderItem={renderCat}
-          />
-        </View>
-      </Animated.View>
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            gap: responsiveWidth(20),
+            marginHorizontal: responsiveWidth(25),
+          }}
+          data={dataCat}
+          renderItem={renderCat}
+        />
+      </View>
       <View style={Styles.doc_view}>
         <Text style={Styles.doc_header}>Top Doctors</Text>
         <TouchableOpacity
@@ -299,53 +287,42 @@ const Home = () => {
           )}
         </TouchableOpacity>
       </View>
-      <View style={Styles.doc_details}>
-        {api === '' ? (
-          <View>
-            <ActivityIndicator
-              color={Colors.date}
-              size={'large'}
-              style={{
-                marginTop: hp('15%'),
-              }}
-            />
-            <Text
-              style={{
-                alignSelf: 'center',
-                fontFamily: fonts.semibold,
-                fontSize: 18,
-                marginTop: hp('1%'),
-                marginLeft: wp('3%'),
-              }}>
-              Loading...
-            </Text>
-          </View>
-        ) : api.length === 0 ? (
-          <View
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text style={{color: 'black'}}>No data found !</Text>
-          </View>
-        ) : (
-          <View
-            style={{
-              backgroundColor: Colors.white,
-              flexGrow: 1,
-            }}>
-            <FlatList
-              data={api}
-              style={{flex: 1}}
-              contentContainerStyle={{
-                flexGrow: 1,
-                gap: 20,
-                paddingBottom: hp('3%'),
-              }}
-              renderItem={renderDoc}
-              initialNumToRender={10}
-            />
-          </View>
-        )}
-      </View>
-    </Animated.View>
+      <AnimatedFlatList
+        data={api}
+        contentContainerStyle={{
+          gap: 20,
+          paddingBottom: responsiveHeight(15),
+        }}
+        onScroll={onScroll}
+        overScrollMode="never"
+        renderItem={renderDoc}
+        initialNumToRender={3}
+      />
+      <Animated.View
+        style={[Styles.fadeTop, {opacity: topFadeOpacity}]}
+        pointerEvents="none">
+        <LinearGradient
+          colors={['white', 'transparent']}
+          style={[
+            Styles.fadeTop,
+            {
+              top: doc ? responsiveHeight(230) : responsiveHeight(390),
+            },
+          ]}
+          pointerEvents="none"
+        />
+      </Animated.View>
+      <Animated.View
+        style={[Styles.fadeBottom, {opacity: bottomFadeOpacity}]}
+        pointerEvents="none">
+        {/* Bottom Fade */}
+        <LinearGradient
+          colors={['transparent', 'white']}
+          style={[Styles.fadeBottom]}
+          pointerEvents="none"
+        />
+      </Animated.View>
+    </View>
   );
 };
 
@@ -374,7 +351,7 @@ const Styles = StyleSheet.create({
     borderRadius: 8,
   },
   flatlist_header: {
-    flex: 0,
+    flexGrow: 1,
     alignItems: 'center',
   },
   flatlist_header_text: {
@@ -414,13 +391,12 @@ const Styles = StyleSheet.create({
     fontFamily: fonts.regular,
   },
   doc_view: {
-    flex: 0,
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: wp('4%'),
-    marginTop: hp('2%'),
+    marginTop: responsiveHeight(5),
+    marginBottom: responsiveHeight(15),
     justifyContent: 'space-between',
-    paddingHorizontal: 22,
+    paddingHorizontal: responsiveWidth(25),
   },
   doc_header: {
     fontFamily: fonts.semibold,
@@ -445,21 +421,23 @@ const Styles = StyleSheet.create({
     backgroundColor: Colors.lite_green,
     height: hp('2%'),
     width: hp('2%'),
-    marginHorizontal: wp('11%'),
-    marginTop: hp('-0.5%'),
+    alignSelf: 'flex-end',
+    bottom: '10%',
     borderRadius: hp('2%'),
     borderWidth: 2,
     borderColor: Colors.search_bar,
   },
   doc_banner: {
     borderRadius: 15,
+    borderWidth: 2,
+    borderColor: Colors.blue,
     shadowColor: Colors.grey,
     backgroundColor: Colors.white,
     alignItems: 'center',
     justifyContent: 'space-around',
     flexDirection: 'row',
-    marginHorizontal: wp('5%'),
-    padding: hp('1%'),
+    marginHorizontal: responsiveWidth(25),
+    padding: responsiveHeight(10),
   },
   doc_banner_header: {
     fontFamily: fonts.regular,
@@ -483,9 +461,23 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 14,
-    marginLeft: wp('7.3%'),
-    marginRight: wp('-2%'),
     elevation: 5,
+    marginBottom: responsiveHeight(10),
+  },
+  fadeTop: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: 40,
+    zIndex: 4,
+  },
+  fadeBottom: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 40,
+    zIndex: 10,
   },
 });
 

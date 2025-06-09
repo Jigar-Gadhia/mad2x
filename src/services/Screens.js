@@ -9,4 +9,5 @@ export const Screens = {
   Appointment: 'Appointment',
   Success: 'Success',
   Settings: 'Settings',
+  DoctorDetails: 'DoctorDetails',
 };
