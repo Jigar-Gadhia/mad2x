@@ -42,16 +42,26 @@ build/Release
 node_modules/
 jspm_packages/
 
-# Gradle files
+# Android specific files and folders
 android/.gradle/
+android/app/build/
 android/build/
-
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
+android/.idea/
+android/.cxx/
+android/.externalNativeBuild/
+android/local.properties
+android/captures/
+android/output.json
+android/*.iml
+android/**/*.iml
 *.apk
-output.json
+*.ap_  # Android build intermediate
+*.dex  # Dalvik bytecode
+*.class
+*.so   # Native libraries
+*.log
+*.keystore
+*.jks
 
 # Local configuration file (sdk path, etc)
 local.properties
