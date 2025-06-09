@@ -17,23 +17,24 @@ import {Rating} from 'react-native-ratings';
 import {useNavigation} from '@react-navigation/native';
 import {fonts} from '../assets/fonts/fonts';
 
-const Details = ({ToggleD, api, image, ind}) => {
+const Details = ({api, image}) => {
   const navigation = useNavigation();
   return (
     <View
       style={{
-        height: hp('100%'),
-        width: wp('100%'),
+        flex: 1,
         backgroundColor: Colors.white,
       }}>
       <View style={Styles.bg}>
-        <TouchableOpacity style={Styles.detail_back} onPress={() => ToggleD()}>
+        <TouchableOpacity
+          style={Styles.detail_back}
+          onPress={() => navigation.goBack()}>
           <Icon name="arrow-back" size={32} color={Colors.white} />
         </TouchableOpacity>
         <View style={Styles.profile_bg}>
           <View style={Styles.bg_image}>
             <ImageBackground
-              source={{uri: api[ind]?.profilePic || image}}
+              source={{uri: api?.profilePic || image}}
               resizeMode="contain"
               style={{height: hp('15%')}}
               borderRadius={16}>
@@ -41,9 +42,9 @@ const Details = ({ToggleD, api, image, ind}) => {
             </ImageBackground>
           </View>
           <Text style={Styles.doc_text_sp}>
-            {api[ind].specialityName != '' ? api[ind].specialityName : 'None'}
+            {api?.specialityName !== '' ? api?.specialityName : 'None'}
           </Text>
-          <Text style={Styles.doc_text_title}>{api[ind].doctorName}</Text>
+          <Text style={Styles.doc_text_title}>{api?.doctorName}</Text>
           <View style={Styles.doc_icon_view}>
             <TouchableOpacity style={Styles.doc_icon_button}>
               <Image
@@ -70,31 +71,31 @@ const Details = ({ToggleD, api, image, ind}) => {
               />
             </TouchableOpacity>
           </View>
-          <Text style={Styles.hos_text}>{api[ind].hospital}</Text>
+          <Text style={Styles.hos_text}>{api?.hospital}</Text>
           <Rating
             style={Styles.ratingStyle}
             type="star"
             ratingCount={'5'}
             imageSize={20}
             readonly={true}
-            startingValue={api[ind]?.rating}
+            startingValue={api?.rating}
           />
           <Text style={Styles.about}>About</Text>
           <Text style={[Styles.hos_text, {width: wp('70%'), fontSize: 13}]}>
-            {api[ind]?.about}
+            {api?.about}
           </Text>
           <View style={Styles.countStyle}>
             <View>
               <Text style={Styles.doc_exp}>Patients</Text>
-              <Text style={Styles.doc_exp_data}>{api[ind]?.patients}</Text>
+              <Text style={Styles.doc_exp_data}>{api?.patients}</Text>
             </View>
             <View>
               <Text style={Styles.doc_exp}>Experiance</Text>
-              <Text style={Styles.doc_exp_data}>{api[ind].experience}</Text>
+              <Text style={Styles.doc_exp_data}>{api?.experience}</Text>
             </View>
             <View>
               <Text style={Styles.doc_exp}>Reviews</Text>
-              <Text style={Styles.doc_exp_data}>{api[ind].reviews}</Text>
+              <Text style={Styles.doc_exp_data}>{api?.reviews}</Text>
             </View>
           </View>
           <View style={Styles.book_app_view}>
